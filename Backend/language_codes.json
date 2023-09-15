@@ -1,0 +1,16 @@
+{
+    "language": ["google-trans", "tesseract"],
+    "Assamese": ["as", "asm"],
+    "Bengali": ["bn", "ben"],
+    "Gujarati": ["gu", "guj"],
+    "Hindi": ["hi", "hin"],
+    "Kannada": ["kn", "kan"],
+    "Malayalam": ["ml", "mal"],
+    "Manipuri": ["mni", "mni"],
+    "Marathi": ["mr", "mar"],
+    "Odia": ["or", "ori"],
+    "Punjabi": ["pa", "pan"],
+    "Tamil": ["ta", "tam"],
+    "Telugu": ["te", "tel"],
+    "Urdu": ["ur", "urd"]
+}
