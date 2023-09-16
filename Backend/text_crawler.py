@@ -5,6 +5,8 @@ import re
 import aiohttp
 from bs4 import BeautifulSoup
 
+from article_sentiment import analyze_content
+
 async def scrape_ndtv_archive(news_outlet, target_date, source_url, max_articles_to_scrape):
     async with aiohttp.ClientSession() as session:
         async with session.get(source_url) as response:
@@ -18,7 +20,11 @@ async def scrape_ndtv_archive(news_outlet, target_date, source_url, max_articles
                         "publication_date": target_date,
                         "link": link["href"],
                         "title": link.text.strip(),
-                        "content": None
+                        "content": {
+                            "text": None,
+                            "tone": None,
+                            "government_body": None
+                        }
                     }
 
                     for link in article_links.find_all("a", href = True)
@@ -51,9 +57,10 @@ async def fetch_article_content(session, index, article, max_articles_to_scrape)
 
         if article_body:
             raw_content = article_body.get_text(strip = True)
-
             processed_content = re.sub(r'[^\x20-\x7E]', " ", raw_content)
-            article["content"] = " ".join(processed_content.split())
+
+            article["content"]["text"] = " ".join(processed_content.split())
+            article["content"]["tone"] = analyze_content(article["content"]["text"])
 
             print(f'[{index}/{max_articles_to_scrape}] {article["link"]}')
         else:
