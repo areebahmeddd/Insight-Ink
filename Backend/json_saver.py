@@ -1,7 +1,8 @@
 import json
 import os
 
-from article_sentiment import analyze_content
+from sentiment_analyzer import analyze_content
+from department_categorizer import categorize_department
 
 def save_to_json(json_file_path:str, data:tuple, publisher:str) -> None:
     lang = json_file_path.split('\\')[-1].split('.')[0]
@@ -13,7 +14,7 @@ def save_to_json(json_file_path:str, data:tuple, publisher:str) -> None:
         'content': {
             'text': text,
             'tone': analyze_content(text),
-            'government_body': None
+            'government_body': categorize_department(text)
         }
     }
 
