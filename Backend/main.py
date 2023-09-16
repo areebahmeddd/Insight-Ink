@@ -2,6 +2,7 @@ import asyncio
 import json
 
 from text_crawler import scrape_ndtv_archive
+from image_analyzer import preprocess_image
 from image_crawler import get_ocr
 from translator import get_translation
 from json_saver import save_to_json
@@ -12,7 +13,7 @@ outlets_dict = {
     'Dinamalar': ['Tamil', 'tam'],
     'Mathrubhumi': ['Malayalam', 'mal'],
     'Eenadu': ['Telugu', 'tel'],
-    'Etemaad Daily': ['Urdu', 'urd']
+    'Etemaad': ['Urdu', 'urd']
 }
 
 async def main():
@@ -27,7 +28,18 @@ async def main():
         
     elif news_outlet in outlets_dict:
         language = outlets_dict[news_outlet][0]
-        file_path = rf'Backend\Assets\{outlets_dict[news_outlet][1]}-1.jpg'
+                
+        input_path = rf'Backend\Assets\{outlets_dict[news_outlet][1]}-1.jpg'
+        output_path = rf'Backend\Assets\{outlets_dict[news_outlet][1]}-12.jpg'
+
+        result = preprocess_image(input_path, output_path)
+
+        if result == True:
+            print(f'Preprocessed image saved as {output_path}')
+        else:
+            print(f'Preprocessing failed: {result}')
+
+        file_path = output_path
         
         with open(r'Backend\language_codes.json', 'r', encoding='utf-8') as f:
             lang_codes = json.load(f)
