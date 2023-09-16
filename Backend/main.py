@@ -11,11 +11,12 @@ outlets_dict = {
     'Vijayavani': ['Kannada', 'kan'],
     'Dinamalar': ['Tamil', 'tam'],
     'Mathrubhumi': ['Malayalam', 'mal'],
-    'Sakshi': ['Telugu', 'tel']
+    'Eenadu': ['Telugu', 'tel'],
+    'Etemaad Daily': ['Urdu', 'urd']
 }
 
 async def main():
-    news_outlet = input("News Outlet: ")
+    news_outlet = input("News Outlet: ").capitalize()
 
     if news_outlet.lower() == "ndtv":
         target_date = input("Date: ")
@@ -33,7 +34,7 @@ async def main():
             
         ocr_data = get_ocr(file_path, lang=lang_codes[language][1])
         translator_data = get_translation(ocr_data, lang=lang_codes[language][0])
-        save_to_json(r'Backend\translated.json', translator_data)
+        save_to_json(rf'Backend\{language.lower()}.json', translator_data, publisher=news_outlet)
         
     else:
         print("\n[Error] News outlet not supported")

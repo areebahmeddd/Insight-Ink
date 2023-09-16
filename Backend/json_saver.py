@@ -1,8 +1,22 @@
 import json
 import os
 
-def save_to_json(json_file_path:str, data:tuple) -> None:
-    output = {data[0]: data[1]}
+from article_sentiment import analyze_content
+
+def save_to_json(json_file_path:str, data:tuple, publisher:str) -> None:
+    lang = json_file_path.split('\\')[-1].split('.')[0]
+    text = " ".join(data[1])
+    
+    output = {
+        'source': data[0],
+        'publisher': publisher,
+        'content': {
+            'text': text,
+            'tone': analyze_content(text),
+            'government_body': None
+        }
+    }
+
     print(f"Saving to {json_file_path} ...")
     
     try:

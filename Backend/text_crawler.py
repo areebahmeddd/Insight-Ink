@@ -42,7 +42,7 @@ async def scrape_ndtv_archive(news_outlet, target_date, source_url, max_articles
                 await asyncio.gather(*tasks)
 
                 try:
-                    with open("english.json", "w", encoding = "utf-8") as json_file:
+                    with open(r'Backend\english.json', "w", encoding = "utf-8") as json_file:
                         json.dump(article_data, json_file, ensure_ascii = False, indent = 4)
                 except IOError as exc:
                     print(f'[Error] Failed to write data to file: {exc}')
