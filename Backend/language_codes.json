@@ -1,16 +1,16 @@
 {
     "language": ["google-trans", "tesseract"],
-    "Assamese": ["as", "asm"],
-    "Bengali": ["bn", "ben"],
-    "Gujarati": ["gu", "guj"],
     "Hindi": ["hi", "hin"],
+    "Urdu": ["ur", "urd"],
+    "Punjabi": ["pa", "pan"],
+    "Gujarati": ["gu", "guj"],
+    "Marathi": ["mr", "mar"],
+    "Telugu": ["te", "tel"],
     "Kannada": ["kn", "kan"],
     "Malayalam": ["ml", "mal"],
-    "Manipuri": ["mni", "mni"],
-    "Marathi": ["mr", "mar"],
-    "Odia": ["or", "ori"],
-    "Punjabi": ["pa", "pan"],
     "Tamil": ["ta", "tam"],
-    "Telugu": ["te", "tel"],
-    "Urdu": ["ur", "urd"]
+    "Odia": ["or", "ori"],
+    "Bengali": ["bn", "ben"],
+    "Assamese": ["as", "asm"],
+    "Manipuri": ["mni", "mni"]
 }

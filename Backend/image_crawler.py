@@ -1,17 +1,14 @@
-import os
-
 import pytesseract
 from PIL import Image
 
-def get_ocr(file:str, lang:str = 'eng') -> tuple:
-    print(f"Running OCR for {file} ...")
-
-    os.environ['TESSDATA_PREFIX'] = r'C:\Program Files\Tesseract-OCR\tessdata'
+def perform_ocr(image_file_path: str, language: str = "eng") -> tuple:
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-    img = Image.open(file)
-    text = pytesseract.image_to_string(img, lang=lang)
+    print(f'\nPerforming Optical Character Recognition: {image_file_path}')
+
+    with Image.open(image_file_path) as source_image:
+        image_text = pytesseract.image_to_string(source_image, lang = language)
 
     print("Done ...")
-    
-    return (text, file)
+
+    return (image_text, image_file_path)
