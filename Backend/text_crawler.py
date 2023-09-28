@@ -5,7 +5,7 @@ import re
 import aiohttp
 from bs4 import BeautifulSoup
 
-from sentiment_analyzer import analyze_content
+from sentiment_analyzer import analyze_sentiment
 from department_categorizer import categorize_department
 
 async def scrape_ndtv_archive(news_outlet: str, source_url: str, max_articles_to_scrape: int) -> None:
@@ -55,7 +55,7 @@ async def fetch_article_content(session: aiohttp.ClientSession, index: int, arti
             processed_content = re.sub(r'[^\x20-\x7E]', " ", raw_content)
 
             article["text"] = " ".join(processed_content.split())
-            article["tone"] = analyze_content(article["text"])
+            article["tone"] = analyze_sentiment(article["text"])
             article["government-body"] = categorize_department(article["text"])
 
             print(f'[{index}/{max_articles_to_scrape}] {article["link"]}')

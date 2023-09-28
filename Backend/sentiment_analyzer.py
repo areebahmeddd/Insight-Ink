@@ -1,6 +1,6 @@
 from textblob import TextBlob
 
-def analyze_content(text):
+def analyze_sentiment(text):
     content = TextBlob(text)
     sentiment_score = content.sentiment.polarity
 

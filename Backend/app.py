@@ -18,7 +18,7 @@ news_outlets = {
 }
 
 @app.route("/", methods = ["GET", "POST"])
-def index() -> str:
+def home() -> str:
     if request.method == "POST":
         news_outlet = request.form["news_outlet"]
         target_date = request.form["target_date"]
@@ -30,9 +30,9 @@ def index() -> str:
             asyncio.run(scrape_ndtv_archive(news_outlet, source_url, max_articles_to_scrape))
 
             with open(r'Backend\english.json', "r", encoding = "utf-8") as json_file:
-                file_data = json.load(json_file)
+                scraped_data = json.load(json_file)
 
-            return render_template("test.html", json_data = json.dumps(file_data, indent = 4))
+            return render_template("test.html", json_data = json.dumps(scraped_data, indent = 4))
 
         elif news_outlet in news_outlets:
             outlet_language = news_outlets[news_outlet][0]
@@ -46,9 +46,9 @@ def index() -> str:
             perform_translation(news_outlet, extracted_text, json_file_path, language_mappings[outlet_language][0])
 
             with open(json_file_path, "r", encoding = "utf-8") as json_file:
-                file_data = json.load(json_file)
+                scraped_data = json.load(json_file)
 
-            return render_template("test.html", json_data = json.dumps(file_data, indent = 4))
+            return render_template("test.html", json_data = json.dumps(scraped_data, indent = 4))
 
         else:
             return "News outlet not supported"
@@ -56,4 +56,4 @@ def index() -> str:
         return render_template("test.html")
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run()
