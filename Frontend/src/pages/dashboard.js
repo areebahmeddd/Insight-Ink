@@ -21,35 +21,134 @@ const Dashboard = () => {
   const location = useLocation();
   const [tableData, setTableData] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const { dropdownValue, formattedDate } = location.state;
 
   useEffect(() => {
-    const loadingTimeout = setTimeout(() => {
-      setLoading(false); // Hide loading screen after 3 seconds
-    }, 3000);
-    // Fetch data using axios inside the effect
+    const { dropdownValue, formattedDate } = location.state;
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(true);
+    }, 1500);
+
+    //later replace this with the domain name
+    /**
     axios
-      .get('https://jsonplaceholder.typicode.com/todos/1', {
-        //params: { dropdownValue, formattedDate }
-      })
+      .get('http://localhost:5000/', 
+      { dropdownValue, formattedDate }
+      )
       .then((res) => {
         setTableData(res.data);
         console.log(tableData);
-        setLoading(false); // Hide loading screen when data is fetched
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false); // Hide loading screen in case of an error
+        setLoading(false);
       });
-
-    // Cleanup function
-    return () => {
-      clearTimeout(loadingTimeout); // Clear the loading screen timeout if component unmounts
-    };
-  },[formattedDate,dropdownValue]);
-
+      */
+  }, [location.state]);
 
   return isLoading ? (<Loader/>) : (
+    /**
+    <div className="dashboard-container">
+      <StyledSideNav
+        onSelect={(selected) => {
+          // Code for updating the selected state when a navigation item is clicked
+        }}
+        className={expanded ? "navbar expanded" : "navbar"}
+      >
+        <SideNav.Toggle />
+        <SideNav.Nav defaultSelected="home">
+          <NavItem eventKey="home">
+            <NavIcon>
+              <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
+            </NavIcon>
+            <NavText>Home</NavText>
+          </NavItem>
+          <NavItem eventKey="charts">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText>Charts</NavText>
+          </NavItem>
+          <NavItem eventKey="contact">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-envelope"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText>Contact us</NavText>
+          </NavItem>
+          <NavItem eventKey="settings">
+            <NavIcon>
+              <i className="fa fa-fw fa-cog" style={{ fontSize: "1.75em" }} />
+            </NavIcon>
+            <NavText>Settings</NavText>
+          </NavItem>
+        </SideNav.Nav>
+      </StyledSideNav>
+
+      <ClickOutside
+        onClickOutside={() => {
+          setExpanded(false); // Update the expanded state here
+        }}
+      >
+        <StyledSideNav
+          expanded={expanded}
+          onToggle={(expanded) => {
+            setExpanded(expanded); // Update the expanded state here
+          }}
+        >
+          <SideNav.Toggle />
+          <SideNav.Nav defaultSelected="home">
+            <NavItem eventKey="home">
+              <NavIcon>
+                <i
+                  className="fa fa-fw fa-home"
+                  style={{ fontSize: "1.75em" }}
+                />
+              </NavIcon>
+              <NavText>Home</NavText>
+            </NavItem>
+            <NavItem eventKey="charts">
+              <NavIcon>
+                <i
+                  className="fa fa-fw fa-line-chart"
+                  style={{ fontSize: "1.75em" }}
+                />
+              </NavIcon>
+              <NavText>Charts</NavText>
+            </NavItem>
+            <NavItem eventKey="contact">
+              <NavIcon>
+                <i
+                  className="fa fa-fw fa-envelope"
+                  style={{ fontSize: "1.75em" }}
+                />
+              </NavIcon>
+              <NavText>Contact us</NavText>
+            </NavItem>
+            <NavItem eventKey="settings">
+              <NavIcon>
+                <i className="fa fa-fw fa-cog" style={{ fontSize: "1.75em" }} />
+              </NavIcon>
+              <NavText>Settings</NavText>
+            </NavItem>
+          </SideNav.Nav>
+        </StyledSideNav>
+      </ClickOutside>
+
+      <section className={`section ${expanded ? "pushed" : ""}`}>
+        <section className="section-content">
+          <h1>Article Dashboard</h1>
+          <TableTable /> 
+        </section>
+      </section>
+    </div>*/
     <Loader/>
   );
 };
