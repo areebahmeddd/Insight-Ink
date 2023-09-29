@@ -18,7 +18,7 @@ import {
   SectionDescription,
 } from "components/misc/Typography";
 import logo from "images/logo.png";
-import "./landing_page.css";
+import "./home.css";
 import DotRing from "components/dotRing";
 import { MouseContext } from "../components/context/mouse-context";
 /* Hero */
@@ -42,8 +42,9 @@ const ActionButton = tw(
   AnchorLink
 )`px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300 mt-12 inline-block tracking-wide text-center px-10 py-4 font-semibold tracking-normal`;
 const PrimaryButton = tw(ActionButton)``;
+const ActionButton2 = tw.button`px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300 mt-12 inline-block tracking-wide text-center px-10 py-4 font-semibold tracking-normal`;
 const SecondaryButton = tw(
-  ActionButton
+  ActionButton2
 )`mt-6 sm:mt-12 sm:ml-8 bg-gray-300 text-gray-800 hocus:bg-gray-400 hocus:text-gray-900`;
 const ImageColumn = tw(Column)`mx-auto lg:mr-0 relative mt-16 lg:mt-0 lg:ml-8`;
 const ImageContainer = tw.div``;
@@ -53,6 +54,7 @@ const SectionHeading = tw(HeadingBase)`text-primary-900`;
 
 // Define the styles for different UI elements
 const sectionHighlight = {
+  width: "auto",
   backgroundColor: "#242424",
   borderRadius: "30px",
 };
@@ -99,7 +101,7 @@ const buttonStyle2 = {
 };
 const datePickerStyle = {
   //display: "block",
-  
+  width: "auto",
   margin: "20px 10px 10px 10px",
   borderRadius: "10px",
   padding: "10px",
@@ -112,7 +114,7 @@ export default ({
   features = null,
   primaryButtonUrl = "#details",
   primaryButtonText = "Get Started",
-  secondaryButtonUrl = "",
+  secondaryButtonUrl = "#details",
   secondaryButtonText = "GitHub",
   buttonRoundedCss = "",
   heading = "Insight Ink",
@@ -146,7 +148,6 @@ export default ({
   const { cursorChangeHandler } = useContext(MouseContext);
   // Render the main page
   return (
-    /** */
     <div
       style={{
         backgroundImage:
@@ -161,9 +162,9 @@ export default ({
           style={{ backdropFilter: "blur(2px)" }}
         >
           <Content2Xl style={{ padding: "0px 0px" }}>
-            <NavRow style={{color:"#000"}}>
+            <NavRow style={{ color: "#000" }}>
               {/* Render the logo and site title */}
-              <LogoLink href="/">
+              <LogoLink href="/" style={{color:"black"}}>
                 <img src={logo} alt="" />
                 Team Innov8
               </LogoLink>
@@ -186,7 +187,16 @@ export default ({
                     {primaryButtonText}
                   </PrimaryButton>
 
-                  <SecondaryButton href="https://github.com/">
+                  <SecondaryButton
+                    role="link"
+                    onClick={() => {
+                      window.open(
+                        "https://github.com/areebahmeddd/Insight-Ink",
+                        "_blank",
+                        "noreferrer"
+                      );
+                    }}
+                  >
                     {secondaryButtonText}
                   </SecondaryButton>
                 </Actions>
@@ -238,14 +248,24 @@ export default ({
                         <option value="eenadu">Eenadu (Telugu)</option>
                       </select>
                       <div style={datePickerStyle}>
-                        <div style={textWhite}>Enter date</div>
+                        <div style={textWhite}>Select Date</div>
                         {/* Render the date picker */}
                         <DatePicker
                           className="datepicker"
                           selected={dateValue}
                           onChange={(date) => setDateValue(date)}
-                          style={{width:"100%"}}
+                          style={{ width: "100%" }}
                         />
+                        <style jsx="true">{`
+                          .datepicker {
+                            background-color: #454444;
+                            color: white;
+                            border-radius: 8px;
+                            padding: 2px 0px 2px 8px;
+                            width: 250px;
+                            box-sizing: border-box;
+                          }
+                        `}</style>
                       </div>
                       <div>
                         <button
@@ -264,7 +284,7 @@ export default ({
                       <style jsx="true">{`
                         @media (max-width: 700px) {
                           .div {
-                            leftPadding: 100%;
+                            leftpadding: 100%;
                           }
                         }
                       `}</style>
