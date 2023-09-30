@@ -23,12 +23,14 @@ def perform_translation(news_outlet: str, extracted_text: tuple, json_file_path:
 
     print(f'\nSaving data to file: {json_file_path}')
 
+    formatted_string = " ".join(translated_text)
+
     article_data = {
         "id": 1,
         "source": news_outlet,
-        "text": " ".join(translated_text),
-        "tone": analyze_sentiment(" ".join(translated_text)),
-        "government-body": categorize_department(" ".join(translated_text))
+        "text": formatted_string,
+        "tone": analyze_sentiment(formatted_string),
+        "government-body": categorize_department(formatted_string)
     }
 
     with open(json_file_path, "w", encoding = "utf-8") as json_file:

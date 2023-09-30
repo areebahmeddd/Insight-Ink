@@ -25,7 +25,7 @@ def home() -> str:
 
         if news_outlet == "NDTV":
             source_url = f'https://archives.ndtv.com/articles/{target_date}.html'
-            max_articles_to_scrape = 500
+            max_articles_to_scrape = 100
 
             asyncio.run(scrape_ndtv_archive(news_outlet, source_url, max_articles_to_scrape))
 

@@ -2,27 +2,24 @@ import torch
 from transformers import BertTokenizer, BertForSequenceClassification
 
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-model = BertForSequenceClassification.from_pretrained(r'Backend\Models\Sentiment')
+trained_model = BertForSequenceClassification.from_pretrained(r'Backend\Models\Sentiment')
 
-def analyze_sentiment(input_text):
-    # Tokenize the input text
-    tokens = tokenizer(input_text, truncation=True, padding=True, return_tensors="pt")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+trained_model.to(device)
 
-    # Perform inference
-    with torch.no_grad():
-        outputs = model(**tokens)
+def analyze_sentiment(text: str) -> str:
+    tokenized_text = tokenizer(text, truncation = True, padding = True, return_tensors = "pt")
 
-    # Extract the logits from the model's output
-    logits = outputs.logits
+    encoded_text = {
+        key: val.to(device)
+        for key, val in tokenized_text.items()
+    }
 
-    # Calculate probabilities using softmax
-    probabilities = torch.softmax(logits, dim=1)
+    with torch.inference_mode():
+        predicted_scores = trained_model(**encoded_text).logits
 
-    # Determine the predicted sentiment (class with highest probability)
-    predicted_class = torch.argmax(probabilities, dim=1).item()
-
-    # Map the class index to the sentiment labels
-    sentiment_labels = ['Negative', 'Neutral', 'Positive']
-    predicted_sentiment = sentiment_labels[predicted_class]
+    sentiment_index = predicted_scores.argmax(dim = 1).item()
+    sentiment_labels = ["Positive", "Neutral", "Negative"]
+    predicted_sentiment = sentiment_labels[sentiment_index]
 
     return predicted_sentiment
