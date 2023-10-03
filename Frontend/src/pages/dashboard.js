@@ -31,7 +31,7 @@ const Dashboard = () => {
     }, 1500);
 
     //later replace this with the domain name
-    /**
+    
     axios
       .get('http://localhost:5000/', 
       { dropdownValue, formattedDate }
@@ -45,12 +45,11 @@ const Dashboard = () => {
         console.log(err);
         setLoading(false);
       });
-      */
   }, [location.state]);
 
   return isLoading ? (<Loader/>) : (
-    /**
     <div className="dashboard-container">
+      {/* Render the sidebar navigation */}
       <StyledSideNav
         onSelect={(selected) => {
           // Code for updating the selected state when a navigation item is clicked
@@ -92,11 +91,13 @@ const Dashboard = () => {
         </SideNav.Nav>
       </StyledSideNav>
 
+      {/* Use ClickOutside to handle closing the expanded sidebar when clicking outside */}
       <ClickOutside
         onClickOutside={() => {
           setExpanded(false); // Update the expanded state here
         }}
       >
+        {/* Render the sidebar with toggle functionality */}
         <StyledSideNav
           expanded={expanded}
           onToggle={(expanded) => {
@@ -142,14 +143,14 @@ const Dashboard = () => {
         </StyledSideNav>
       </ClickOutside>
 
+      {/* Render the main content section */}
       <section className={`section ${expanded ? "pushed" : ""}`}>
         <section className="section-content">
           <h1>Article Dashboard</h1>
-          <TableTable /> 
+          <TableTable /> {/* Render the table component */}
         </section>
       </section>
-    </div>*/
-    <Loader/>
+    </div>
   );
 };
 
