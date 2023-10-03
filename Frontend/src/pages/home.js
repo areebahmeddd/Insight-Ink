@@ -21,6 +21,8 @@ import logo from "images/logo.png";
 import "./home.css";
 import DotRing from "components/dotRing";
 import { MouseContext } from "../components/context/mouse-context";
+import YoutubeEmbed from "components/ytembed";
+import Alert from "react-bootstrap/Alert";
 /* Hero */
 const Row = tw.div`flex`;
 const NavRow = tw(Row)`flex flex-col lg:flex-row items-center justify-between`;
@@ -118,7 +120,7 @@ export default ({
   secondaryButtonText = "GitHub",
   buttonRoundedCss = "",
   heading = "Insight Ink",
-  description = "Welcome to the PIB Automated Feedback System, a transformative solution for media monitoring in the Government of India. Our advanced AI and machine learning solution diligently scans and evaluates regional news stories, e-papers, and YouTube videos across various languages. It categorizes content by government departments and sentiment, delivering instant notifications for negative news. Equipped with an intuitive interface and rapid alerts, our platform equips government officials with actionable intelligence, ensuring prompt responses to media feedback.",
+  description = "Welcome to the Press Information Bureau (PIB) Automated Feedback System, a transformative solution for media monitoring in the Government of India. Our advanced AI and machine learning solution diligently scans and evaluates regional news stories, e-papers, and YouTube videos across various languages. It categorizes content by government departments and sentiment, delivering instant notifications for negative news. Equipped with an intuitive interface and rapid alerts, our platform equips government officials with actionable intelligence, ensuring prompt responses to media feedback.",
 }) => {
   // Set the document title and initialize Google Analytics
   useEffect(() => {
@@ -131,16 +133,27 @@ export default ({
   const [dropdownValue, setDropdownValue] = useState("");
   const [dateValue, setDateValue] = useState("");
   const navigate = useNavigate(); // Initialize navigation function
+  const [showAlert, setShowAlert] = useState(false); // State for showing/hiding alert
 
   // Handle the form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Check if either the dropdownValue or dateValue is empty
+    if (!dropdownValue || !dateValue) {
+      // Show the alert and set a timer to hide it after 2 seconds
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2000);
+      return; // Prevent form submission
+    }
     // Format the date value to adjust to wht is needed by the API
     const formattedDate = dateValue
       ? `${dateValue.getFullYear()}-${(dateValue.getMonth() + 1)
           .toString()
           .padStart(2, "0")}`
       : "";
+    console.log(dropdownValue, formattedDate);
     // Navigate to the dashboard page
     navigate("/dashboard", { state: { dropdownValue, formattedDate } });
     // Submit the data here
@@ -164,7 +177,7 @@ export default ({
           <Content2Xl style={{ padding: "0px 0px" }}>
             <NavRow style={{ color: "#000" }}>
               {/* Render the logo and site title */}
-              <LogoLink href="/" style={{color:"black"}}>
+              <LogoLink href="/" style={{ color: "black" }}>
                 <img src={logo} alt="" />
                 Team Innov8
               </LogoLink>
@@ -182,7 +195,7 @@ export default ({
                 <Actions>
                   <PrimaryButton
                     href={primaryButtonUrl}
-                    style={{ backgroundColor: "#5e5e5e" }}
+                    style={{ backgroundColor: "#242424" }}
                   >
                     {primaryButtonText}
                   </PrimaryButton>
@@ -214,15 +227,27 @@ export default ({
             <SectionContainer id="details" style={sectionHighlight}>
               {/* Render the section for entering details */}
               <SectionHeading style={{ color: "#ededed" }}>
-                Enter the details
+                Build Your Search
               </SectionHeading>
               <div style={centerFlex}>
-                <SectionDescription>
-                  Select the source for gathering information. Use the date
-                  picker to search for the particular date. Must enter all the
-                  fields. It takes time while we get the information for you
+                <SectionDescription style={{ textAlign: "center" }}>
+                  Select your preferred news source and fine-tune your search by
+                  specifying the exact date
                 </SectionDescription>
               </div>
+              <div className="player">
+                <YoutubeEmbed embedId="dQw4w9WgXcQ" />
+              </div>
+              <style jsx="true">{`
+                .player {
+                  margin: 2% 20%;
+                }
+                @media (max-width: 700px) {
+                  .player {
+                    margin: 1% 5%;
+                  }
+                }
+              `}</style>
               <div
                 onMouseOver={() => cursorChangeHandler("hovered")}
                 onMouseEnter={() => cursorChangeHandler("hovered")}
@@ -237,7 +262,7 @@ export default ({
                         onChange={(e) => setDropdownValue(e.target.value)}
                         style={buttonStyle2}
                       >
-                        <option value="">Select News</option>
+                        <option value="">News Source</option>
                         <option value="ndtv">NDTV (English)</option>
                         <option value="hindustan">Hindustan (Hindi)</option>
                         <option value="prajavani">Prajavani (Kannada)</option>
@@ -248,7 +273,9 @@ export default ({
                         <option value="eenadu">Eenadu (Telugu)</option>
                       </select>
                       <div style={datePickerStyle}>
-                        <div style={textWhite}>Select Date</div>
+                        <div style={centerFlex}>
+                          <div style={textWhite}>Date</div>
+                        </div>
                         {/* Render the date picker */}
                         <DatePicker
                           className="datepicker"
@@ -271,20 +298,72 @@ export default ({
                         <button
                           type="submit"
                           className="button-74"
-                          style={buttonStyle}
+                          style={{
+                            ...buttonStyle,
+                            display: "flex",
+                            alignItems: "center",
+                          }}
                         >
                           <img
-                            src="https://imagizer.imageshack.com/img924/2614/Lkco5F.png"
+                            src="https://imagizer.imageshack.com/img924/9773/V952F6.png"
+                            display="inline-block"
                             alt=""
-                            width={60}
-                            height={60}
+                            width={35}
+                            height={35}
+                            style={{ margin: 10 }}
                           ></img>
+                          <div
+                            style={{
+                              fontSize: "30px",
+                              marginRight: "10px",
+                              fontWeight: "lighter",
+                            }}
+                          >
+                            Search
+                          </div>
                         </button>
                       </div>
                       <style jsx="true">{`
                         @media (max-width: 700px) {
                           .div {
                             leftpadding: 100%;
+                          }
+                        }
+                      `}</style>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <Alert
+                        className="alert"
+                        variant="danger"
+                        show={showAlert}
+                        onClose={() => setShowAlert(false)}
+                        dismissible
+                      >
+                        <i className="fa fa-exclamation-circle" /> Please select
+                        a news source and a valid date.
+                      </Alert>
+                      <style jsx="true">{`
+                        .alert {
+                          background-color: #f8d7da;
+                          color: #721c24;
+                          border: 1px solid #f5c6cb;
+                          border-radius: 4px;
+                          padding: 15px;
+                          margin: 15px 20px 0px 20px;
+                          font-size: 16px;
+                          font-weight: bold;
+                          max-width: 800px;
+                          position: fixed;
+                          opacity: 0;
+                          transition: opacity 0.5s ease-in-out;
+                        }
+                        .alert.show {
+                          opacity: 1;
+                        }
+
+                        @media (max-width: 700px) {
+                          .alert {
+                            position: relative;
                           }
                         }
                       `}</style>
