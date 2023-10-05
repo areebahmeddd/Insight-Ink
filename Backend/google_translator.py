@@ -5,7 +5,7 @@ from googletrans import Translator
 from sentiment_analyzer import analyze_sentiment
 from department_categorizer import categorize_department
 
-def perform_translation(news_outlet: str, extracted_text: tuple, json_file_path: str, language: str) -> None:
+def perform_translation(news_source: str, extracted_text: tuple, json_file_path: str, language: str) -> None:
     google_translator = Translator()
 
     file_name = extracted_text[1]
@@ -27,7 +27,7 @@ def perform_translation(news_outlet: str, extracted_text: tuple, json_file_path:
 
     article_data = {
         "id": 1,
-        "source": news_outlet,
+        "source": news_source,
         "text": formatted_string,
         "tone": analyze_sentiment(formatted_string),
         "government-body": categorize_department(formatted_string)
