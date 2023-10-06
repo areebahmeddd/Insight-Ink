@@ -4,7 +4,7 @@ The [Press Information Bureau](https://pib.gov.in/) (PIB) automated feedback sys
 
 The primary functionality of the system is to send timely notifications for negative articles while providing a user-friendly dashboard for data visualization. Additionally, there is a separate Chrome extension for real-time fake news detection.
 
-# Overview
+## Overview
 
 <p align = "center">
   <strong>Data Acquisition</strong>
@@ -42,12 +42,61 @@ The primary functionality of the system is to send timely notifications for nega
 
 📦 
 
-# Getting Started
+## Getting Started
 
-# License
+Follow these steps to set up and run the Insight Ink software on your local machine, or you can watch the demo video [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+### Prerequisites
+
+- [Python 3.11.5](https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe)
+- [Node.js 18.18.0](https://nodejs.org/dist/v18.18.0/node-v18.18.0-x64.msi)
+
+### Installation
+
+1. Clone the repository to your local machine:
+  ```shell
+  https://github.com/areebahmeddd/Insight-Ink.git
+  ```
+
+2. Navigate to the project directory:
+  ```shell
+  cd Insight-Ink
+  ```
+
+3. Create a virtual environment (optional but recommended):
+  ```shell
+  python -m venv .venv
+  ```
+
+4. Activate the virtual environment:
+
+- Windows:
+  ```shell
+  .venv\Scripts\activate
+  ```
+- macOS and Linux:
+  ```shell
+  source .venv/bin/activate
+  ```
+
+5. Install the project dependencies:
+  ```shell
+  pip install -r requirements.txt
+  ```
+
+### Usage
+
+1. Run the application:
+  ```shell
+  python app.py
+  ```
+
+2. Access the application in your web browser by navigating to http://localhost:5000
+
+## License
 
 This project is licensed under the [Apache License 2.0](https://github.com/areebahmeddd/Insight-Ink/blob/main/LICENSE)
 
-# Authors
+## Authors
 
 [Areeb Ahmed](https://github.com/areebahmeddd), [Shivansh Karan](https://github.com/SpaceTesla), [Nandini Sharma](https://github.com/NandiniSharma116), [Ravikant Saraf](https://github.com/Ravikant2003), [Mohit Nagaraj](https://github.com/mohit-nagaraj), [Anish Varma]()
