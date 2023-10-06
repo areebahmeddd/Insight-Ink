@@ -28,6 +28,7 @@ def perform_translation(news_source: str, extracted_text: tuple, json_file_path:
     article_data = {
         "id": 1,
         "source": news_source,
+        "publication_date": None,
         "text": formatted_string,
         "tone": analyze_sentiment(formatted_string),
         "government-body": categorize_department(formatted_string)

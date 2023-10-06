@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from sentiment_analyzer import analyze_sentiment
 from department_categorizer import categorize_department
 
-async def scrape_ndtv_archive(news_source: str, source_url: str, max_articles_to_scrape: int) -> None:
+async def scrape_ndtv_archive(news_source: str, target_date: int, source_url: str, max_articles_to_scrape: int) -> None:
     async with aiohttp.ClientSession() as session:
         async with session.get(source_url) as response:
             if response.status == 200:
@@ -19,6 +19,7 @@ async def scrape_ndtv_archive(news_source: str, source_url: str, max_articles_to
                     {
                         "id": index,
                         "source": news_source,
+                        "publication_date": target_date,
                         "link": link["href"],
                         "title": link.text.strip(),
                         "text": None,

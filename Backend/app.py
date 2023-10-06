@@ -27,7 +27,7 @@ def home() -> str:
             source_url = f'https://archives.ndtv.com/articles/{target_date}.html'
             max_articles_to_scrape = 100
 
-            asyncio.run(scrape_ndtv_archive(news_source, source_url, max_articles_to_scrape))
+            asyncio.run(scrape_ndtv_archive(news_source, target_date, source_url, max_articles_to_scrape))
 
             with open(r'Backend\english.json', "r", encoding = "utf-8") as json_file:
                 scraped_data = json.load(json_file)
