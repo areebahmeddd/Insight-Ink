@@ -4,6 +4,29 @@ import data from "../data.json";
 import getColumns from "./getColumns.js";
 import "./tablestyles.css";
 
+const PageSize = ({
+  tableManager,
+  value = tableManager.paginationApi.pageSize,
+  onChange = tableManager.paginationApi.setPageSize,
+  options = tableManager.config.pageSizes,
+}) => {
+  const {
+      config: {
+          texts: { rowsPerPage: rowsPerPageText },
+          additionalProps: { pageSize: additionalProps = {} },
+      },
+  } = tableManager;
+
+  let classNames = (
+      "rgt-footer-page-size " + (additionalProps.className || "")
+  ).trim();
+
+  return (
+      <div className={classNames}>
+      </div>
+  );
+};
+
 const SyncTable = () => {
   const [rowsData, setRowsData] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -29,6 +52,7 @@ const SyncTable = () => {
           tableManager.rowSelectionApi.getIsRowSelectable(data.id) &&
           tableManager.rowSelectionApi.toggleRowSelection(data.id)
         }
+        components={{PageSize}}
       />
     </div>
   );

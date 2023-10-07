@@ -61,6 +61,7 @@ const sectionHighlight = {
   borderRadius: "30px",
 };
 const buttonStyle = {
+  height: "77px",
   margin: "20px 10px 10px 10px",
   backgroundColor: "#5e5e5e",
   border: "2px solid #000000",
@@ -79,7 +80,6 @@ const buttonStyle = {
   touchAction: "manipulation",
 };
 const centerFlex = {
-  margin: "0px 20px",
   display: "flex",
   justifyContent: "center",
 };
@@ -120,7 +120,7 @@ export default ({
   secondaryButtonText = "GitHub",
   buttonRoundedCss = "",
   heading = "Insight Ink",
-  description = "Welcome to the Press Information Bureau (PIB) Automated Feedback System, a transformative solution for media monitoring in the Government of India. Our advanced AI and machine learning solution diligently scans and evaluates regional news stories, e-papers, and YouTube videos across various languages. It categorizes content by government departments and sentiment, delivering instant notifications for negative news. Equipped with an intuitive interface and rapid alerts, our platform equips government officials with actionable intelligence, ensuring prompt responses to media feedback.",
+  description = "Welcome to Press Information Bureau (PIB) automated feedback system, a transformative solution for media monitoring in the Government of India. Our advanced AI and machine learning platform scans and evaluates national and regional news articles, e-papers, and YouTube videos in various languages, categorizing them by government departments and sentiment. It delivers real-time notifications for negative news and provides a user-friendly interface for government officials to take swift action in response to media feedback, strengthening government-public communication.",
 }) => {
   // Set the document title and initialize Google Analytics
   useEffect(() => {
@@ -175,7 +175,7 @@ export default ({
           style={{ backdropFilter: "blur(2px)" }}
         >
           <Content2Xl style={{ padding: "0px 0px" }}>
-            <NavRow style={{ color: "#000" }}>
+            <NavRow style={{ color: "#000",alignItems:"flex-start" }}>
               {/* Render the logo and site title */}
               <LogoLink href="/" style={{ color: "black" }}>
                 <img src={logo} alt="" />
@@ -202,6 +202,11 @@ export default ({
 
                   <SecondaryButton
                     role="link"
+                    style={{
+                      ...centerFlex,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
                     onClick={() => {
                       window.open(
                         "https://github.com/areebahmeddd/Insight-Ink",
@@ -211,6 +216,13 @@ export default ({
                     }}
                   >
                     {secondaryButtonText}
+                    <img
+                      src="https://imagizer.imageshack.com/img922/6533/UFGckL.png"
+                      alt=""
+                      width={25}
+                      height={25}
+                      style={{ marginLeft: "10px" }}
+                    ></img>
                   </SecondaryButton>
                 </Actions>
               </TextColumn>
@@ -229,25 +241,13 @@ export default ({
               <SectionHeading style={{ color: "#ededed" }}>
                 Build Your Search
               </SectionHeading>
-              <div style={centerFlex}>
+              <div style={{ ...centerFlex, margin: "0px 20px" }}>
                 <SectionDescription style={{ textAlign: "center" }}>
                   Select your preferred news source and fine-tune your search by
                   specifying the exact date
                 </SectionDescription>
               </div>
-              <div className="player">
-                <YoutubeEmbed embedId="dQw4w9WgXcQ" />
-              </div>
-              <style jsx="true">{`
-                .player {
-                  margin: 2% 20%;
-                }
-                @media (max-width: 700px) {
-                  .player {
-                    margin: 1% 5%;
-                  }
-                }
-              `}</style>
+
               <div
                 onMouseOver={() => cursorChangeHandler("hovered")}
                 onMouseEnter={() => cursorChangeHandler("hovered")}
@@ -256,13 +256,18 @@ export default ({
                 <div className="form">
                   {/* Render the form for entering details */}
                   <form onSubmit={handleSubmit}>
-                    <div style={centerFlex}>
+                    <div style={{ ...centerFlex, margin: "0px 20px" }}>
                       <select
                         value={dropdownValue}
                         onChange={(e) => setDropdownValue(e.target.value)}
-                        style={buttonStyle2}
+                        style={{
+                          ...buttonStyle2,
+                          lineHeight: "30px",
+                        }}
                       >
-                        <option value="">News Source</option>
+                        <option hidden value="">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </option>
                         <option value="ndtv">NDTV (English)</option>
                         <option value="hindustan">Hindustan (Hindi)</option>
                         <option value="prajavani">Prajavani (Kannada)</option>
@@ -272,9 +277,21 @@ export default ({
                         </option>
                         <option value="eenadu">Eenadu (Telugu)</option>
                       </select>
+                      <style jsx="true">{`
+                        select {
+                          -webkit-appearance: none;
+                          -moz-appearance: none;
+                          appearance: none;
+                          line-height: 30px;
+                          background-image: url("https://imagizer.imageshack.com/img923/5379/D5ArC0.png");
+                          background-repeat: no-repeat;
+                          background-position: calc(100% - 1rem) center !important;
+                          background-size: 1em;
+                        }
+                      `}</style>
                       <div style={datePickerStyle}>
                         <div style={centerFlex}>
-                          <div style={textWhite}>Date</div>
+                          <div style={textWhite}>Select Date</div>
                         </div>
                         {/* Render the date picker */}
                         <DatePicker
@@ -292,9 +309,21 @@ export default ({
                             width: 250px;
                             box-sizing: border-box;
                           }
+
+                          @media (max-width: 700px) {
+                            .datepicker {
+                              width: 65vw;
+                            }
+                          }
+
+                          @media (max-width: 400px) {
+                            .datepicker {
+                              width: 60vw;
+                            }
+                          }
                         `}</style>
                       </div>
-                      <div>
+                      <div style={centerFlex}>
                         <button
                           type="submit"
                           className="button-74"
@@ -302,19 +331,20 @@ export default ({
                             ...buttonStyle,
                             display: "flex",
                             alignItems: "center",
+                            justifyContent: "center",
                           }}
                         >
                           <img
                             src="https://imagizer.imageshack.com/img924/9773/V952F6.png"
                             display="inline-block"
                             alt=""
-                            width={35}
-                            height={35}
+                            width={25}
+                            height={25}
                             style={{ margin: 10 }}
                           ></img>
                           <div
                             style={{
-                              fontSize: "30px",
+                              fontSize: "20px",
                               marginRight: "10px",
                               fontWeight: "lighter",
                             }}
@@ -368,6 +398,19 @@ export default ({
                         }
                       `}</style>
                     </div>
+                    <div className="player">
+                      <YoutubeEmbed embedId="dQw4w9WgXcQ" />
+                    </div>
+                    <style jsx="true">{`
+                      .player {
+                        margin: 5% 20% 0% 20%;
+                      }
+                      @media (max-width: 700px) {
+                        .player {
+                          margin: 1% 5%;
+                        }
+                      }
+                    `}</style>
                   </form>
                 </div>
               </div>
