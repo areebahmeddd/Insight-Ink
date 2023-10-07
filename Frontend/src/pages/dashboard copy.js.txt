@@ -17,7 +17,7 @@ StyledSideNav.defaultProps = SideNav.defaultProps;
 // Dashboard component
 const Dashboard = () => {
   const [expanded, setExpanded] = useState(false);
-  const [currentPage, setCurrentPage] = useState("home");
+
   const location = useLocation();
   const [tableData, setTableData] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -45,14 +45,10 @@ const Dashboard = () => {
       });
   }, [location.state]);
 
-  const handlePageChange = (pageName) => {
-    setCurrentPage(pageName);
-  };
-
   const renderPageContent = () => {
     switch (currentPage) {
       case "home":
-        return <TableTable />;
+        return <div>home</div>;
       case "charts":
         return <div>charts</div>;
       case "contact":
@@ -82,12 +78,7 @@ const Dashboard = () => {
         >
           <SideNav.Toggle />
           <SideNav.Nav defaultSelected="home">
-            <NavItem 
-              eventKey="home"
-              onClick={() => {
-                handlePageChange("home");
-              }}
-            >
+            <NavItem eventKey="home">
               <NavIcon>
                 <i
                   className="fa fa-fw fa-home"
@@ -96,12 +87,7 @@ const Dashboard = () => {
               </NavIcon>
               <NavText>Home</NavText>
             </NavItem>
-            <NavItem 
-              eventKey="charts"
-              onClick={() => {
-                handlePageChange("charts");
-              }}
-            >
+            <NavItem eventKey="charts">
               <NavIcon>
                 <i
                   className="fa fa-fw fa-line-chart"
@@ -110,12 +96,7 @@ const Dashboard = () => {
               </NavIcon>
               <NavText>Charts</NavText>
             </NavItem>
-            <NavItem 
-              eventKey="contact"
-              onClick={() => {
-                handlePageChange("contact");
-              }}
-            >
+            <NavItem eventKey="contact">
               <NavIcon>
                 <i
                   className="fa fa-fw fa-envelope"
@@ -124,12 +105,7 @@ const Dashboard = () => {
               </NavIcon>
               <NavText>Contact us</NavText>
             </NavItem>
-            <NavItem 
-              eventKey="settings"
-              onClick={() => {
-                handlePageChange("settings");
-              }}
-            >
+            <NavItem eventKey="settings">
               <NavIcon>
                 <i className="fa fa-fw fa-cog" style={{ fontSize: "1.75em" }} />
               </NavIcon>
@@ -143,7 +119,7 @@ const Dashboard = () => {
       <section className={`section ${expanded ? "pushed" : ""}`}>
         <section className="section-content">
           <h1>Article Dashboard</h1>
-          {renderPageContent()}
+          <TableTable /> {/* Render the table component */}
         </section>
       </section>
     </div>

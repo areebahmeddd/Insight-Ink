@@ -68,9 +68,9 @@ const getColumns = ({ setRowsData }) => {
     },
     {
       id: "2",
-      width: "400px",
+      width: "minmax(200px, 1fr)",
       field: "title",
-      label: "Name",
+      label: "Title",
     },
     {
       id: "3",
@@ -117,9 +117,16 @@ const getColumns = ({ setRowsData }) => {
     },
     {
       id: "5",
+      visible: false,
       width: "minmax(200px, 1fr)",
       field: "text",
       label: "Content",
+    },
+    {
+      id:"6",
+      width: "100px",
+      field:"publication_date",
+      label:"Date",
     },
     {
       id: "7",
@@ -132,7 +139,7 @@ const getColumns = ({ setRowsData }) => {
               const { link } = data;
               if (link) {
                 // Redirect to the URL
-                window.location.href = link;
+                window.open(link, "_blank");
               }
             }}
           >
