@@ -36,7 +36,7 @@ The primary functionality of the system is to send timely notifications for nega
   <strong>Data Presentation</strong>
 </p>
 
-- **Cross-Platform User Interface**: Designed a [website](http://insight-ink.org/) using frameworks such as [React](https://react.dev/reference/react) and [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/), with integrated [Twilio API](https://www.twilio.com/docs/sms) for real-time notifications to government officials regarding negative articles, thereby improving the ability to monitor and respond proactively.
+- **Cross-Platform User Interface**: Designed a [website](https://insight-ink.org/) using frameworks such as [React](https://react.dev/reference/react) and [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/), with integrated [Twilio API](https://www.twilio.com/docs/sms) for real-time notifications to government officials regarding negative articles, thereby improving the ability to monitor and respond proactively.
 
 - **Chrome Extension**: 
 
@@ -44,7 +44,7 @@ The primary functionality of the system is to send timely notifications for nega
 
 ## Getting Started
 
-Follow these steps to set up and run the Insight Ink software on your local machine, or you can watch the demo video [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+Follow these steps to set up and run the Insight Ink software on your local machine, or you can watch the [demo video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ### Prerequisites
 
@@ -55,7 +55,7 @@ Follow these steps to set up and run the Insight Ink software on your local mach
 
 1. Clone the repository to your local machine:
   ```shell
-  https://github.com/areebahmeddd/Insight-Ink.git
+  git clone https://github.com/areebahmeddd/Insight-Ink.git
   ```
 
 2. Navigate to the project directory:
@@ -83,15 +83,21 @@ Follow these steps to set up and run the Insight Ink software on your local mach
   ```shell
   pip install -r requirements.txt
   ```
+  ```shell
+  npm install
+  ```
 
 ### Usage
 
-1. Run the application:
+1. Run the application and start the development server:
   ```shell
   python app.py
   ```
+  ```shell
+  npm start
+  ```
 
-2. Access the application in your web browser by navigating to http://localhost:5000
+2. Access the application in your web browser by navigating to http://localhost:3000
 
 ## License
 
@@ -99,4 +105,4 @@ This project is licensed under the [Apache License 2.0](https://github.com/areeb
 
 ## Authors
 
-[Areeb Ahmed](https://github.com/areebahmeddd), [Shivansh Karan](https://github.com/SpaceTesla), [Nandini Sharma](https://github.com/NandiniSharma116), [Ravikant Saraf](https://github.com/Ravikant2003), [Mohit Nagaraj](https://github.com/mohit-nagaraj), [Anish Varma]()
+[Areeb Ahmed](https://github.com/areebahmeddd), [Shivansh Karan](https://github.com/SpaceTesla), [Nandini Sharma](https://github.com/NandiniSharma116), [Ravikant Saraf](https://github.com/Ravikant2003), [Mohit Nagaraj](https://github.com/mohit-nagaraj), [Anish Varma](https://github.com/Av7danger)
