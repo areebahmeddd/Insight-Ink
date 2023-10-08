@@ -10,7 +10,7 @@ from google_translator import perform_translation
 app = Flask(__name__, template_folder = "../Frontend")
 
 media_outlets = {
-    "Hindustan": ["Hindi", "hin"],
+    "Dainik Jagran": ["Hindi", "hin"],
     "Prajavani": ["Kannada", "kan"],
     "Dinamalar": ["Tamil", "tam"],
     "Mathrubhumi": ["Malayalam", "mal"],
