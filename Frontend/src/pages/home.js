@@ -44,7 +44,9 @@ const ActionButton = tw(
   AnchorLink
 )`px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300 mt-12 inline-block tracking-wide text-center px-10 py-4 font-semibold tracking-normal`;
 const PrimaryButton = tw(ActionButton)``;
+
 const ActionButton2 = tw.button`px-8 py-3 font-bold rounded bg-primary-500 text-gray-100 hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline focus:outline-none transition duration-300 mt-12 inline-block tracking-wide text-center px-10 py-4 font-semibold tracking-normal`;
+const PrimaryButton2 = tw(ActionButton2)``;
 const SecondaryButton = tw(
   ActionButton2
 )`mt-6 sm:mt-12 sm:ml-8 bg-gray-300 text-gray-800 hocus:bg-gray-400 hocus:text-gray-900`;
@@ -120,7 +122,7 @@ export default ({
   secondaryButtonText = "GitHub",
   buttonRoundedCss = "",
   heading = "Insight Ink",
-  description = "Welcome to Press Information Bureau (PIB) automated feedback system, a transformative solution for media monitoring in the Government of India. Our advanced AI and machine learning platform scans and evaluates national and regional news articles, e-papers, and YouTube videos in various languages, categorizing them by government departments and sentiment. It delivers real-time notifications for negative news and provides a user-friendly interface for government officials to take swift action in response to media feedback, strengthening government-public communication.",
+  description = "Welcome to Press Information Bureau (PIB) automated feedback system, a transformative solution for media monitoring in the Government of India. Our advanced AI and machine learning platform analyzes national and regional news articles, e-papers, and YouTube videos in various languages, categorizing them by government departments and sentiment. It delivers real-time notifications for negative news and provides a user-friendly interface for government officials to take swift action in response to media feedback, strengthening government-public communication.",
 }) => {
   // Set the document title and initialize Google Analytics
   useEffect(() => {
@@ -199,7 +201,34 @@ export default ({
                   >
                     {primaryButtonText}
                   </PrimaryButton>
-
+                  <PrimaryButton2
+                  className="downloadbtn"
+                    onClick={() => {
+                      window.open(
+                        "https://play.google.com/store/apps",
+                        "_blank",
+                        "noreferrer"
+                      );
+                    }}
+                  >
+                    Download
+                  </PrimaryButton2>
+                  <style jsx="true">{`
+                    .downloadbtn {
+                      background-color: #242424;
+                      margin-left: 32px;
+                      margin-top: 48px;
+                    }
+                    .downloadbtn:hover {
+                      background-color: #3f3f3f;
+                    }
+                    @media (max-width: 640px) {
+                      .downloadbtn {
+                        margin-left: 0px;
+                        margin-top: 24px;
+                      }
+                    }
+                  `}</style>
                   <SecondaryButton
                     role="link"
                     style={{
@@ -269,7 +298,7 @@ export default ({
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </option>
                         <option value="ndtv">NDTV (English)</option>
-                        <option value="hindustan">Hindustan (Hindi)</option>
+                        <option value="dainikjagran">Dainik Jagran (Hindi)</option>
                         <option value="prajavani">Prajavani (Kannada)</option>
                         <option value="dinamalar">Dinamalar (Tamil)</option>
                         <option value="mathrubhumi">
@@ -370,7 +399,7 @@ export default ({
                         dismissible
                       >
                         <i className="fa fa-exclamation-circle" /> Please select
-                        a news source and a valid date.
+                        a news source and a valid date
                       </Alert>
                       <style jsx="true">{`
                         .alert {
@@ -412,6 +441,41 @@ export default ({
                       }
                     `}</style>
                   </form>
+                  <div style={{padding:"32px 0px 0px 0px"}}>
+                  <div style={{...centerFlex,color:"grey", cursor:"default"}}>Insight Ink documentation is available&nbsp;<div className="documentation" onClick={() => {
+                      window.open(
+                        "https://github.com/areebahmeddd/Insight-Ink/blob/main/README.md",
+                        "_self",
+                        "noreferrer"
+                      );
+                    }}>»here«</div>
+                    <style jsx="true">{`
+                      .documentation {
+                        color:grey;cursor:pointer;
+                        transition:color 0.3s ease-in-out;
+                      }
+                      .documentation:hover {
+                        color:#fff;
+                      }
+                    `}</style>
+                    </div>
+                  <div className="license glow" style={{...centerFlex,cursor:"pointer"}} onClick={() => {
+                      window.open(
+                        "https://github.com/areebahmeddd/Insight-Ink/blob/main/LICENSE",
+                        "_self",
+                        "noreferrer"
+                      );
+                    }}>©️ Insight Ink 2023</div>
+                    <style jsx="true">{`
+                      .license {
+                        color:grey;cursor:pointer;
+                        transition:color 0.3s ease-in-out;
+                      }
+                      .license:hover {
+                        color:#fafafa;
+                      }
+                    `}</style>
+                  </div>
                 </div>
               </div>
               <style jsx="true">{`

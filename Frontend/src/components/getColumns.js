@@ -80,14 +80,14 @@ const getColumns = ({ setRowsData }) => {
       cellRenderer: ({ value }) => {
         let backgroundColor;
     
-        switch (value.toLowerCase()) {
-          case "neutral":
+        switch (value) {
+          case "Neutral":
             backgroundColor = "#ffe634c2";
             break;
-          case "positive":
+          case "Positive":
             backgroundColor = "#4ce94cc9";
             break;
-          case "negative":
+          case "Negative":
             backgroundColor = "#ff4f4fb8";
             break;
           default:
