@@ -40,7 +40,7 @@ async def scrape_ndtv_archive(news_source: str, target_date: int, source_url: st
 
                 await asyncio.gather(*tasks)
 
-                with open(r'Backend\english.json', "w", encoding = "utf-8") as json_file:
+                with open(r'Frontend\src\english.json', "w", encoding = "utf-8") as json_file:
                     json.dump(article_data, json_file, ensure_ascii = False, indent = 4)
             else:
                 print(f'[Error] Failed to retrieve data from {source_url}\nStatus code: {response.status}')
