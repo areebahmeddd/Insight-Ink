@@ -33,15 +33,15 @@ def preprocess_text(raw_text: str) -> str:
         ]
     )
 
-    tokenized_text = [
-        lemmatizer.lemmatize(word)
-        for word in re.split(r'\W+', raw_text)
-        if word not in common_words
-    ]
+    tokenized_text = " ".join(
+        [
+            lemmatizer.lemmatize(word)
+            for word in re.split(r'\W+', raw_text)
+            if word not in common_words
+        ]
+    )
 
-    formatted_string = " ".join(tokenized_text)
-
-    return formatted_string
+    return tokenized_text
 
 dataframe["cleaned_text"] = dataframe["text"].apply(preprocess_text)
 sparse_matrix = vectorizer.fit_transform(dataframe["cleaned_text"])

@@ -13,25 +13,27 @@ def perform_translation(news_source: str, extracted_text: tuple, json_file_path:
 
     print(f'\nTranslating: {file_name}')
 
-    translated_text = [
-        google_translator.translate(str(line), src = language, dest = "en").text
-        for line in extracted_lines
-        if line is not None and line.strip() != ""
-    ]
+    translated_text = " ".join(
+        [
+            google_translator.translate(str(line), src = language, dest = "en").text
+            for line in extracted_lines
+            if line is not None and line.strip() != ""
+        ]
+    )
 
     print("Done ...")
 
     print(f'\nSaving data to file: {json_file_path}')
 
-    formatted_string = " ".join(translated_text)
-
     article_data = {
         "id": 1,
         "source": news_source,
         "publication_date": None,
-        "text": formatted_string,
-        "tone": analyze_sentiment(formatted_string),
-        "government-body": categorize_department(formatted_string)
+        "link": None,
+        "title": None,
+        "text": translated_text,
+        "tone": analyze_sentiment(translated_text),
+        "government-body": categorize_department(translated_text)
     }
 
     with open(json_file_path, "w", encoding = "utf-8") as json_file:
