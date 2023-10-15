@@ -3,12 +3,11 @@ import ClickOutside from "react-click-outside";
 import "font-awesome/css/font-awesome.min.css";
 import styled from "styled-components";
 import "./dashboard.css";
-import TableTable from "../components/table";
+import SyncTable from "../components/table";
 import SideNav, { NavItem, NavIcon, NavText } from "@trendmicro/react-sidenav";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
-import Loader from "components/loader/Loader";
+import ContactForm from "components/contact/contact";
 const StyledSideNav = styled(SideNav)`
   background-color: #242424;
 `;
@@ -20,30 +19,14 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState("tables");
   const location = useLocation();
   const [tableData, setTableData] = useState(null);
-  const [isLoading, setLoading] = useState(false);
+  
 
   useEffect(() => {
-    const { dropdownValue, formattedDate } = location.state;
-    setLoading(true);
-    console.log(dropdownValue, formattedDate);
-    setTimeout(() => {
-      setLoading(true);
-    }, 1500);
+    const { tableData } = location.state;
 
-    //later replace this with the domain name
-
-    axios
-      .get("http://localhost:5000/", { dropdownValue, formattedDate })
-      .then((res) => {
-        setTableData(res.data);
-        console.log(tableData);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  }, [location.state, tableData]);
+    setTableData(tableData);
+    
+  }, [location.state]);
 
   const handlePageChange = (pageName) => {
     setCurrentPage(pageName);
@@ -52,25 +35,23 @@ const Dashboard = () => {
   const renderPageContent = () => {
     switch (currentPage) {
       case "home":
-        return <div>home</div>;
+        return <div style={{color:"#000"}}>home</div>;
       case "info":
-        return <div>info</div>;
+        return <div style={{color:"#000"}}>info</div>;
       case "tables":
-        return <TableTable param={tableData}/>;
+        return <SyncTable data={tableData}/>;
       case "charts":
-        return <div>charts</div>;
+        return <div style={{color:"#000"}}>charts</div>;
       case "contact":
-        return <div>contact</div>;
+        return <ContactForm/>;
       case "settings":
-        return <div>settings</div>;
+        return <div style={{color:"#000"}}>settings</div>;
       default:
         return null;
     }
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <div className="dashboard-container">
 
       <ClickOutside
@@ -178,6 +159,7 @@ const Dashboard = () => {
           <style jsx="true">
             {`
               .titleCenter {
+                color: #000;
                 text-align: center;
                 font-size: 26px;
                 font-weight: semibold;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import DatePicker from "react-datepicker";
-import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import { useContext } from "react";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
@@ -14,7 +14,6 @@ import {
 import tw from "twin.macro";
 import { LogoLink } from "components/headers/light.js";
 import { SectionHeading as HeadingBase } from "components/misc/Headings";
-import { SectionHeading2} from "components/misc/Headings";
 import {
   SectionDescription as DescriptionBase,
   SectionDescription,
@@ -25,6 +24,7 @@ import DotRing from "components/dotRing";
 import { MouseContext } from "../components/context/mouse-context";
 import YoutubeEmbed from "components/ytembed";
 import Alert from "react-bootstrap/Alert";
+import Loader from "components/loader/Loader";
 /* Hero */
 const Row = tw.div`flex`;
 const NavRow = tw(Row)`flex flex-col lg:flex-row items-center justify-between`;
@@ -138,10 +138,11 @@ export default ({
   const [dateValue, setDateValue] = useState("");
   const navigate = useNavigate(); // Initialize navigation function
   const [showAlert, setShowAlert] = useState(false); // State for showing/hiding alert
-
+  const [isLoading, setLoading] = useState(false);
   // Handle the form submission
   const handleSubmit = async(e) =>{
     e.preventDefault();
+    
     // Check if either the dropdownValue or dateValue is empty
     if (!dropdownValue || !dateValue) {
       // Show the alert and set a timer to hide it after 2 seconds
@@ -151,12 +152,14 @@ export default ({
       }, 2000);
       return; // Prevent form submission
     }
+    setLoading(true);
     // Format the date value to adjust to wht is needed by the API
     const formattedDate = dateValue
       ? `${dateValue.getFullYear()}-${(dateValue.getMonth() + 1)
           .toString()
           .padStart(2, "0")}`
       : "";
+      
       if (
         ["NDTV", "Dainik Jagran", "Prajavani", "Dinamalar", "Mathrubhumi", "Eenadu"].includes(dropdownValue)
       ) {
@@ -170,15 +173,16 @@ export default ({
             "Content-Type": "application/json",
           },
         });
-    
         if (response.data && !response.data.error) {
           navigate("/dashboard", {
             state: { tableData: response.data },
           });
         } else {
           console.error("Error: ", response.data.error);
+          
         }
       }
+      setLoading(false);
     };
   
     
@@ -186,7 +190,7 @@ export default ({
 
   const { cursorChangeHandler } = useContext(MouseContext);
   // Render the main page
-  return (
+  return isLoading?<Loader/>:(
     <div
       style={{
         backgroundImage:
@@ -302,7 +306,6 @@ export default ({
               </div>
 
               <div
-                onMouseOver={() => cursorChangeHandler("hovered")}
                 onMouseEnter={() => cursorChangeHandler("hovered")}
                 onMouseLeave={() => cursorChangeHandler("")}
               >
@@ -451,15 +454,21 @@ export default ({
                         }
                       `}</style>
                     </div>
-                    <SectionHeading2 style={{color:"#fff"}}>
-                      Project Demo
-                    </SectionHeading2>
+                    <div style={{ textAlign:"center" ,fontSize:"40px",color:"#fff",margin:"3% 0% 0% 0%",fontWeight:"bold"}}>
+                        Project Demo
+                    </div>
+                    <div style={{ textAlign:"center" ,fontSize:"20px",color:"grey",}}>
+                    <a href="https://github.com/areebahmeddd/Insight-Ink/blob/main/README.md">Insight Ink documentation is available here</a>
+                    </div>
+                    <div style={{ textAlign:"center" ,fontSize:"20px",color:"grey",marginBottom:"20px"}}>
+                    <a href="https://github.com/areebahmeddd/Insight-Ink/blob/main/LICENSE">Insight Ink license is available here</a>
+                    </div>
                     <div className="player">
                       <YoutubeEmbed embedId="dQw4w9WgXcQ" />
                     </div>
                     <style jsx="true">{`
                       .player {
-                        margin: 5% 20% 0% 20%;
+                        margin: 0% 20% 0% 20%;
                       }
                       @media (max-width: 700px) {
                         .player {
@@ -469,23 +478,7 @@ export default ({
                     `}</style>
                   </form>
                   <div style={{padding:"32px 0px 0px 0px"}}>
-                  <div style={{...centerFlex,color:"grey", cursor:"default"}}>Insight Ink documentation is available&nbsp;<div className="documentation" onClick={() => {
-                      window.open(
-                        "https://github.com/areebahmeddd/Insight-Ink/blob/main/README.md",
-                        "_self",
-                        "noreferrer"
-                      );
-                    }}>»here«</div>
-                    <style jsx="true">{`
-                      .documentation {
-                        color:grey;cursor:pointer;
-                        transition:color 0.3s ease-in-out;
-                      }
-                      .documentation:hover {
-                        color:#fff;
-                      }
-                    `}</style>
-                    </div>
+                  
                   <div className="license glow" style={{...centerFlex,cursor:"pointer"}} onClick={() => {
                       window.open(
                         "https://github.com/areebahmeddd/Insight-Ink/blob/main/LICENSE",

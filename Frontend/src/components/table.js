@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import GridTable from "@nadavshaar/react-grid-table";
-import data from "../data.json";
 import getColumns from "./getColumns.js";
 import "./tablestyles.css";
 
@@ -11,48 +10,49 @@ const PageSize = ({
   options = tableManager.config.pageSizes,
 }) => {
   const {
-      config: {
-          texts: { rowsPerPage: rowsPerPageText },
-          additionalProps: { pageSize: additionalProps = {} },
-      },
+    config: {
+      texts: { rowsPerPage: rowsPerPageText },
+      additionalProps: { pageSize: additionalProps = {} },
+    },
   } = tableManager;
 
   let classNames = (
-      "rgt-footer-page-size " + (additionalProps.className || "")
+    "rgt-footer-page-size " + (additionalProps.className || "")
   ).trim();
 
   return (
-      <div className={classNames}>
-      </div>
+    <div className={classNames}>
+      
+    </div>
   );
 };
 
-const SyncTable = () => {
+const SyncTable = ({ data }) => {
   const [rowsData, setRowsData] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
+    if (data && data.length > 0) {
       setRowsData(data);
       setLoading(false);
-    }, 1500);
-  }, []);
+    }
+  }, [data]);
 
   return (
-    <div className="App">
+    <div className="App" style={{color:"#000"}}>
       <GridTable
         columns={getColumns({ setRowsData })}
         rows={rowsData}
         pageSize={10}
         pageSizes={[5, 10, 20]}
+        showRowsInformation={false}
         isLoading={isLoading}
         onRowClick={({ rowIndex, data, column, isEdit, event }, tableManager) =>
           !isEdit &&
           tableManager.rowSelectionApi.getIsRowSelectable(data.id) &&
           tableManager.rowSelectionApi.toggleRowSelection(data.id)
         }
-        components={{PageSize}}
+        components={{ PageSize }}
       />
     </div>
   );
