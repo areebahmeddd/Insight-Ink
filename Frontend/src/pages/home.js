@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import DatePicker from "react-datepicker";
+import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import { useContext } from "react";
@@ -13,6 +14,7 @@ import {
 import tw from "twin.macro";
 import { LogoLink } from "components/headers/light.js";
 import { SectionHeading as HeadingBase } from "components/misc/Headings";
+import { SectionHeading2} from "components/misc/Headings";
 import {
   SectionDescription as DescriptionBase,
   SectionDescription,
@@ -138,7 +140,7 @@ export default ({
   const [showAlert, setShowAlert] = useState(false); // State for showing/hiding alert
 
   // Handle the form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) =>{
     e.preventDefault();
     // Check if either the dropdownValue or dateValue is empty
     if (!dropdownValue || !dateValue) {
@@ -155,11 +157,33 @@ export default ({
           .toString()
           .padStart(2, "0")}`
       : "";
-    console.log(dropdownValue, formattedDate);
-    // Navigate to the dashboard page
-    navigate("/dashboard", { state: { dropdownValue, formattedDate } });
+      if (
+        ["NDTV", "Dainik Jagran", "Prajavani", "Dinamalar", "Mathrubhumi", "Eenadu"].includes(dropdownValue)
+      ) {
+        const requestData = {
+          news_source: dropdownValue,
+          target_date: formattedDate,
+        };
+    
+        const response = await Axios.post("http://127.0.0.1:5000/api", requestData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+    
+        if (response.data && !response.data.error) {
+          navigate("/dashboard", {
+            state: { tableData: response.data },
+          });
+        } else {
+          console.error("Error: ", response.data.error);
+        }
+      }
+    };
+  
+    
     // Submit the data here
-  };
+
   const { cursorChangeHandler } = useContext(MouseContext);
   // Render the main page
   return (
@@ -427,6 +451,9 @@ export default ({
                         }
                       `}</style>
                     </div>
+                    <SectionHeading2 style={{color:"#fff"}}>
+                      Project Demo
+                    </SectionHeading2>
                     <div className="player">
                       <YoutubeEmbed embedId="dQw4w9WgXcQ" />
                     </div>
