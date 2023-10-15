@@ -64,30 +64,30 @@ const getColumns = ({ setRowsData }) => {
       id: "1",
       width: "82px",
       field: "id",
-      label: "Id",
+      label: "ID",
     },
     {
       id: "2",
-      width: "minmax(200px, 1fr)",
+      width: "minmax(190px, 1fr)",
       field: "title",
       label: "Title",
     },
     {
       id: "3",
-      width: "110px",
+      width: "120px",
       field: "tone",
-      label: "Category",
+      label: "Sentiment",
       cellRenderer: ({ value }) => {
         let backgroundColor;
     
-        switch (value.toLowerCase()) {
-          case "neutral":
+        switch (value) {
+          case "Neutral":
             backgroundColor = "#ffe634c2";
             break;
-          case "positive":
+          case "Positive":
             backgroundColor = "#4ce94cc9";
             break;
-          case "negative":
+          case "Negative":
             backgroundColor = "#ff4f4fb8";
             break;
           default:
@@ -113,7 +113,7 @@ const getColumns = ({ setRowsData }) => {
       id: "4",
       width: "300px",
       field: "government-body",
-      label: "Government body",
+      label: "Government Body",
     },
     {
       id: "5",

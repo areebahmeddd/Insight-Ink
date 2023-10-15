@@ -17,7 +17,7 @@ StyledSideNav.defaultProps = SideNav.defaultProps;
 // Dashboard component
 const Dashboard = () => {
   const [expanded, setExpanded] = useState(false);
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState("tables");
   const location = useLocation();
   const [tableData, setTableData] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const Dashboard = () => {
   useEffect(() => {
     const { dropdownValue, formattedDate } = location.state;
     setLoading(true);
-
+    console.log(dropdownValue, formattedDate);
     setTimeout(() => {
       setLoading(true);
     }, 1500);
@@ -43,7 +43,7 @@ const Dashboard = () => {
         console.log(err);
         setLoading(false);
       });
-  }, [location.state]);
+  }, [location.state, tableData]);
 
   const handlePageChange = (pageName) => {
     setCurrentPage(pageName);
@@ -52,7 +52,11 @@ const Dashboard = () => {
   const renderPageContent = () => {
     switch (currentPage) {
       case "home":
-        return <TableTable />;
+        return <div>home</div>;
+      case "info":
+        return <div>info</div>;
+      case "tables":
+        return <TableTable param={tableData}/>;
       case "charts":
         return <div>charts</div>;
       case "contact":
@@ -81,11 +85,11 @@ const Dashboard = () => {
           }}
         >
           <SideNav.Toggle />
-          <SideNav.Nav defaultSelected="home">
+          <SideNav.Nav defaultSelected="tables">
             <NavItem 
               eventKey="home"
               onClick={() => {
-                handlePageChange("home");
+                window.open("../", "_self");
               }}
             >
               <NavIcon>
@@ -95,6 +99,34 @@ const Dashboard = () => {
                 />
               </NavIcon>
               <NavText>Home</NavText>
+              </NavItem>
+            <NavItem 
+              eventKey="info"
+              onClick={() => {
+                handlePageChange("info");
+              }}
+            >
+              <NavIcon>
+                <i
+                  className="fa fa-info-circle"
+                  style={{ fontSize: "1.75em" }}
+                />
+              </NavIcon>
+              <NavText>Info</NavText>
+            </NavItem>
+            <NavItem 
+              eventKey="tables"
+              onClick={() => {
+                handlePageChange("tables");
+              }}
+            >
+              <NavIcon>
+                <i
+                  className="fa fa-table"
+                  style={{ fontSize: "1.75em" }}
+                />
+              </NavIcon>
+              <NavText>Tables</NavText>
             </NavItem>
             <NavItem 
               eventKey="charts"
@@ -142,7 +174,18 @@ const Dashboard = () => {
       {/* Render the main content section */}
       <section className={`section ${expanded ? "pushed" : ""}`}>
         <section className="section-content">
-          <h1>Article Dashboard</h1>
+          <div className="titleCenter">Dashboard</div>
+          <style jsx="true">
+            {`
+              .titleCenter {
+                text-align: center;
+                font-size: 26px;
+                font-weight: semibold;
+                margin-bottom: 10px;
+                border-bottom: 2px solid #242424;
+              }
+            `}
+          </style>
           {renderPageContent()}
         </section>
       </section>
