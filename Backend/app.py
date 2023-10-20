@@ -7,6 +7,7 @@ from flask_cors import CORS
 from text_crawler import scrape_ndtv_archive
 from image_crawler import perform_ocr
 from google_translator import perform_translation
+from graph_generator import plot_sentiment_graph, plot_department_graph
 
 app = Flask(__name__)
 CORS(app, resources = {
@@ -35,6 +36,8 @@ def process_data() -> str:
 
         with open(r'Frontend\src\english.json', "r", encoding = "utf-8") as json_file:
             scraped_data = json.load(json_file)
+
+        plot_sentiment_graph(scraped_data)
 
         return jsonify(scraped_data)
 
