@@ -1,7 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
-import  { globalStyles } from 'twin.macro'
+import { createGlobalStyle } from "styled-components";
+import { globalStyles } from "twin.macro";
 
-const GlobalStyles = createGlobalStyle(globalStyles, `
+const GlobalStyles = createGlobalStyle(
+  globalStyles,
+  `
    /* Below animations are for modal created using React-Modal */
      .ReactModal__Overlay {
      transition: transform 300ms ease-in-out;
@@ -14,6 +16,7 @@ const GlobalStyles = createGlobalStyle(globalStyles, `
    .ReactModal__Overlay--before-close{
      transform: scale(0);
    }
-`)
+`
+);
 
-export default GlobalStyles
+export default GlobalStyles;

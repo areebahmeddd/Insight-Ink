@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './css/style.css';
+import './css/animate.css';
 class ContactForm extends Component {
   state = {
     name: '',
@@ -40,7 +41,7 @@ class ContactForm extends Component {
                 <div className="row no-gutters">
                   <div className="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
                     <div className="contact-wrap w-100 p-md-5 p-4">
-                      <h3 className="mb-4">Get in touch</h3>
+                      <h3 className="mb-4">Get to know each other better</h3>
                       <form onSubmit={this.handleSubmit} className="contactForm">
                         <div className="row">
                           <div className="col-md-6">
@@ -125,11 +126,21 @@ class ContactForm extends Component {
                   </div>
                   <div className="col-lg-4 col-md-5 d-flex align-items-stretch">
                     <div className="info-wrap bg-primary w-100 p-md-5 p-4" style={{backgroundColor:"#242424",background:"#242424"}}>
-                      <h3>Let's get in touch</h3>
+                      <h3 style={{fontSize:"26px"}}>Let's get in touch</h3>
                       <p className="mb-4">
                         We're open for any suggestion or just to have a chat
                       </p>
-                      
+                      <div className="dbox w-100 d-flex align-items-center">
+                        <div className="icon d-flex align-items-center justify-content-center">
+                          <span className="fa fa-map-marker"></span>
+                        </div>
+                        <div className="text pl-3">
+                          <p>
+                            <span>Address:</span>{' '}
+                            <a href="tel://1234567920">Dayananda Sagar College of Enginnering</a>
+                          </p>
+                        </div>
+                      </div>
                       <div className="dbox w-100 d-flex align-items-center">
                         <div className="icon d-flex align-items-center justify-content-center">
                           <span className="fa fa-phone"></span>
@@ -137,19 +148,19 @@ class ContactForm extends Component {
                         <div className="text pl-3">
                           <p>
                             <span>Phone:</span>{' '}
-                            <a href="tel://1234567920">+ 1235 2355 98</a>
+                            <a href="tel://1234567920">+91 63639 88391</a>
                           </p>
                         </div>
                       </div>
                       <div className="dbox w-100 d-flex align-items-center">
                       <div className="icon d-flex align-items-center justify-content-center">
-                          <span className="fa fa-map-marker"></span>
+                          <span className="fa fa-paper-plane"></span>
                         </div>
                         <div className="text pl-3">
                           <p>
                             <span>Email:</span>{' '}
-                            <a href="mailto:info@yoursite.com">
-                              info@yoursite.com
+                            <a href="mailto:support@insight-ink.org">
+                              support@insight-ink.org
                             </a>
                           </p>
                         </div>
@@ -160,7 +171,7 @@ class ContactForm extends Component {
                         </div>
                         <div className="text pl-3">
                           <p>
-                            <span>Website</span> <a href="#">yoursite.com</a>
+                            <span>Website</span> <a href="https://insight-ink.org/">insight-ink.org</a>
                           </p>
                         </div>
                       </div>

@@ -8,24 +8,26 @@ import SideNav, { NavItem, NavIcon, NavText } from "@trendmicro/react-sidenav";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import { useLocation } from "react-router-dom";
 import ContactForm from "components/contact/contact";
+import Charts from "components/charts/Charts";
+import chartpic from "../sentiment_distribution.png";
+
 const StyledSideNav = styled(SideNav)`
   background-color: #242424;
+  z-index: 1000;
+  position: fixed;
 `;
 StyledSideNav.defaultProps = SideNav.defaultProps;
 
-// Dashboard component
 const Dashboard = () => {
   const [expanded, setExpanded] = useState(false);
   const [currentPage, setCurrentPage] = useState("tables");
   const location = useLocation();
   const [tableData, setTableData] = useState(null);
-  
 
   useEffect(() => {
     const { tableData } = location.state;
 
     setTableData(tableData);
-    
   }, [location.state]);
 
   const handlePageChange = (pageName) => {
@@ -35,17 +37,17 @@ const Dashboard = () => {
   const renderPageContent = () => {
     switch (currentPage) {
       case "home":
-        return <div style={{color:"#000"}}>home</div>;
+        return <div style={{ color: "#000" }}>Home</div>;
       case "info":
-        return <div style={{color:"#000"}}>info</div>;
+        return <div style={{ color: "#000" }}>Info</div>;
       case "tables":
-        return <SyncTable data={tableData}/>;
+        return <SyncTable data={tableData} />;
       case "charts":
-        return <div style={{color:"#000"}}>charts</div>;
+        return <div style={{ color: "#000" }}><Charts chartspic={chartpic}/></div>;
       case "contact":
-        return <ContactForm/>;
+        return <ContactForm />;
       case "settings":
-        return <div style={{color:"#000"}}>settings</div>;
+        return <div style={{ color: "#000" }}>Settings</div>;
       default:
         return null;
     }
@@ -53,10 +55,9 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-
       <ClickOutside
         onClickOutside={() => {
-          setExpanded(false); 
+          setExpanded(false);
         }}
       >
         <StyledSideNav
@@ -67,7 +68,7 @@ const Dashboard = () => {
         >
           <SideNav.Toggle />
           <SideNav.Nav defaultSelected="tables">
-            <NavItem 
+            <NavItem
               eventKey="home"
               onClick={() => {
                 window.open("../", "_self");
@@ -80,8 +81,8 @@ const Dashboard = () => {
                 />
               </NavIcon>
               <NavText>Home</NavText>
-              </NavItem>
-            <NavItem 
+            </NavItem>
+            <NavItem
               eventKey="info"
               onClick={() => {
                 handlePageChange("info");
@@ -95,21 +96,18 @@ const Dashboard = () => {
               </NavIcon>
               <NavText>Info</NavText>
             </NavItem>
-            <NavItem 
+            <NavItem
               eventKey="tables"
               onClick={() => {
                 handlePageChange("tables");
               }}
             >
               <NavIcon>
-                <i
-                  className="fa fa-table"
-                  style={{ fontSize: "1.75em" }}
-                />
+                <i className="fa fa-table" style={{ fontSize: "1.75em" }} />
               </NavIcon>
               <NavText>Tables</NavText>
             </NavItem>
-            <NavItem 
+            <NavItem
               eventKey="charts"
               onClick={() => {
                 handlePageChange("charts");
@@ -123,7 +121,7 @@ const Dashboard = () => {
               </NavIcon>
               <NavText>Charts</NavText>
             </NavItem>
-            <NavItem 
+            <NavItem
               eventKey="contact"
               onClick={() => {
                 handlePageChange("contact");
@@ -135,9 +133,9 @@ const Dashboard = () => {
                   style={{ fontSize: "1.75em" }}
                 />
               </NavIcon>
-              <NavText>Contact us</NavText>
+              <NavText>Contact</NavText>
             </NavItem>
-            <NavItem 
+            <NavItem
               eventKey="settings"
               onClick={() => {
                 handlePageChange("settings");
@@ -152,7 +150,6 @@ const Dashboard = () => {
         </StyledSideNav>
       </ClickOutside>
 
-      {/* Render the main content section */}
       <section className={`section ${expanded ? "pushed" : ""}`}>
         <section className="section-content">
           <div className="titleCenter">Dashboard</div>
