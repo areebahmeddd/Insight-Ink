@@ -74,6 +74,13 @@ const getColumns = ({ setRowsData }) => {
     },
     {
       id: "3",
+      visible: false,
+      width: "minmax(200px, 1fr)",
+      field: "text",
+      label: "Content",
+    },
+    {
+      id: "4",
       width: "120px",
       field: "tone",
       label: "Sentiment",
@@ -110,17 +117,10 @@ const getColumns = ({ setRowsData }) => {
       },
     },
     {
-      id: "4",
+      id: "5",
       width: "300px",
       field: "government-body",
       label: "Government Body",
-    },
-    {
-      id: "5",
-      visible: false,
-      width: "minmax(200px, 1fr)",
-      field: "text",
-      label: "Content",
     },
     {
       id:"6",

@@ -1,6 +1,10 @@
 {
-  "short_name": "InsightInk",
-  "name": "InsightInk - An 360 AI News Feedback system",
+  "name": "Insight Ink - 360 AI News Feedback System",
+  "short_name": "Insight Ink",
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,9 +21,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

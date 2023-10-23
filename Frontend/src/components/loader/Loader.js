@@ -3,7 +3,7 @@ import { useLoading, BallTriangle } from "@agney/react-loading";
 function Loader() {
   const { containerProps, indicatorEl } = useLoading({
     loading: true,
-    indicator: <BallTriangle width="10%" />,
+    indicator: <BallTriangle width="10%" color="black"/>,
   });
 
   return (

@@ -1,26 +1,19 @@
 
-/* Dashboard.css */
-
 .dashboard-container {
-    display: flex; /* Use flexbox to arrange navbar and content side by side */
-  }
-  
-  .navbar {/* Adjust the width of the navbar as needed */
-    transition: width 0.3s; /* Add a transition for smooth expansion/collapse */
-  }
-  
-  .section {
-    flex-grow: 1; /* Allow the section to grow and take up remaining space */
-    padding: 20px 40px; /* Add padding for content */
-    margin-left: 50px;
-    transition: margin-left 0.3s; /* Add a transition for smooth push effect */
-  }
-  
-  /* Expanded state of the navbar */
+  display: flex; /* Use flexbox to arrange navbar and content side by side */
+}
 
-  
-  /* Push the section content when navbar is expanded */
-  .section.pushed {
-    margin-left: 230px; /* Adjust the margin when navbar is expanded */
-  }
-  
+.navbar {
+  transition: width 0.3s; /* Add a transition for smooth expansion/collapse */
+}
+
+.section {
+  flex-grow: 1; /* Allow the section to grow and take up remaining space */
+  padding: 20px 40px;
+  margin-left: 50px;
+  transition: margin-left 0.3s; /* Add a transition for smooth push effect */
+}
+
+.section.pushed {
+  margin-left: 230px; /* Adjust the margin when navbar is expanded */
+}
