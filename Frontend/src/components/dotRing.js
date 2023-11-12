@@ -18,10 +18,10 @@ const DotRing = () => {
       ></div>
       <style jsx="true">{`
         @media (max-width: 700px) {
-          .dot{
+          .dot {
             opacity: 0;
           }
-          .ring{
+          .ring {
             opacity: 0;
           }
         }

@@ -86,29 +86,33 @@ const getColumns = ({ setRowsData }) => {
       label: "Sentiment",
       cellRenderer: ({ value }) => {
         let backgroundColor;
-    
+
         switch (value) {
-          case "Neutral":
-            backgroundColor = "#ffe634c2";
-            break;
           case "Positive":
             backgroundColor = "#4ce94cc9";
+            break;
+          case "Neutral":
+            backgroundColor = "#ffe634c2";
             break;
           case "Negative":
             backgroundColor = "#ff4f4fb8";
             break;
           default:
-            backgroundColor = "transparent"; // Default background color
+            backgroundColor = "transparent";
             break;
         }
-    
+
         return (
           <div
             style={{
               backgroundColor,
-              alignItems: "center", justifyContent: "center",
-              width: "70%", height: "70%", display: "flex",
-              marginLeft:"10px",borderRadius: "5px",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "70%",
+              height: "70%",
+              display: "flex",
+              marginLeft: "10px",
+              borderRadius: "5px",
             }}
           >
             {value}
@@ -123,22 +127,29 @@ const getColumns = ({ setRowsData }) => {
       label: "Government Body",
     },
     {
-      id:"6",
+      id: "6",
       width: "100px",
-      field:"publication_date",
-      label:"Date",
+      field: "publication_date",
+      label: "Date",
     },
     {
       id: "7",
       width: "75px",
       cellRenderer: ({ data }) => (
-        <div style={{width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <button
             style={styles.editButton}
             onClick={() => {
               const { link } = data;
               if (link) {
-                // Redirect to the URL
                 window.open(link, "_blank");
               }
             }}

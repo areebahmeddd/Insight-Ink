@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./charts.css";
+
 const Charts = ({ chartspic }) => {
   const [isSentimentMode, setIsSentimentMode] = useState(true);
   const [searchValue, setSearchValue] = useState("");
@@ -12,6 +13,7 @@ const Charts = ({ chartspic }) => {
   const handleClearSearch = () => {
     setSearchValue("");
   };
+
   const handleSearchInputChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -20,21 +22,24 @@ const Charts = ({ chartspic }) => {
     <>
       <div className="top-bar">
         <div className="search-bar-container">
-          <i className="fa fa-search" style={{color:"#C5C5C5",marginRight:"5px"}}></i>
+          <i
+            className="fa fa-search"
+            style={{ color: "#C5C5C5", marginRight: "5px" }}
+          ></i>
           <span className="search-bar-span">Search</span>
           <div className="search-bar-divider">
-          <input
-            type="text"
-            className="search-bar"
-            value={searchValue}
-            onChange={handleSearchInputChange}
-            disabled={isSentimentMode}
-          />
-          {searchValue && (
-            <button className="clear-button" onClick={handleClearSearch}>
-              <i className="fa fa-times" style={{color:"#C5C5C5"}}></i>
-            </button>
-          )}
+            <input
+              type="text"
+              className="search-bar"
+              value={searchValue}
+              onChange={handleSearchInputChange}
+              disabled={isSentimentMode}
+            />
+            {searchValue && (
+              <button className="clear-button" onClick={handleClearSearch}>
+                <i className="fa fa-times" style={{ color: "#C5C5C5" }}></i>
+              </button>
+            )}
           </div>
         </div>
         <div className="switch-container">

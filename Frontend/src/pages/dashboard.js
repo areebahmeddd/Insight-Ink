@@ -43,7 +43,11 @@ const Dashboard = () => {
       case "tables":
         return <SyncTable data={tableData} />;
       case "charts":
-        return <div style={{ color: "#000" }}><Charts chartspic={chartpic}/></div>;
+        return (
+          <div style={{ color: "#000" }}>
+            <Charts chartspic={chartpic} />
+          </div>
+        );
       case "contact":
         return <ContactForm />;
       case "settings":

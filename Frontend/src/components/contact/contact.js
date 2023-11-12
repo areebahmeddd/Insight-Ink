@@ -1,25 +1,23 @@
-import React, { Component } from 'react';
-import './css/style.css';
-import './css/animate.css';
+import React, { Component } from "react";
+import "./css/style.css";
+import "./css/animate.css";
+
 class ContactForm extends Component {
   state = {
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    // Handle form submission here, you can use AJAX or any other method.
-
-    // Clear the form fields
     this.setState({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
     });
   };
 
@@ -33,21 +31,23 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <section className="ftco-section" style={{padding:"0"}}>
-        <div className="container" style={{backgroundColor:"transparent"}}>
+      <section className="ftco-section" style={{ padding: "0" }}>
+        <div className="container" style={{ backgroundColor: "transparent" }}>
           <div className="row justify-content-center">
             <div className="col-md-12">
               <div className="wrapper">
                 <div className="row no-gutters">
                   <div className="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
                     <div className="contact-wrap w-100 p-md-5 p-4">
-                      <h3 className="mb-4">Get to know each other better</h3>
-                      <form onSubmit={this.handleSubmit} className="contactForm">
+                      <form
+                        onSubmit={this.handleSubmit}
+                        className="contactForm"
+                      >
                         <div className="row">
                           <div className="col-md-6">
                             <div className="form-group">
                               <label className="label" htmlFor="name">
-                                Full Name
+                                Name
                               </label>
                               <input
                                 type="text"
@@ -63,7 +63,7 @@ class ContactForm extends Component {
                           <div className="col-md-6">
                             <div className="form-group">
                               <label className="label" htmlFor="email">
-                                Email Address
+                                Email
                               </label>
                               <input
                                 type="email"
@@ -115,7 +115,7 @@ class ContactForm extends Component {
                                 type="submit"
                                 value="Send Message"
                                 className="btn btn-primary"
-                                style={{background:"#242424"}}
+                                style={{ background: "#242424" }}
                               />
                               <div className="submitting"></div>
                             </div>
@@ -125,10 +125,16 @@ class ContactForm extends Component {
                     </div>
                   </div>
                   <div className="col-lg-4 col-md-5 d-flex align-items-stretch">
-                    <div className="info-wrap bg-primary w-100 p-md-5 p-4" style={{backgroundColor:"#242424",background:"#242424"}}>
-                      <h3 style={{fontSize:"26px"}}>Let's get in touch</h3>
+                    <div
+                      className="info-wrap bg-primary w-100 p-md-5 p-4"
+                      style={{
+                        backgroundColor: "#242424",
+                        background: "#242424",
+                      }}
+                    >
+                      <h3 style={{ fontSize: "26px" }}>Let's get in touch!</h3>
                       <p className="mb-4">
-                        We're open for any suggestion or just to have a chat
+                        We're open for any suggestions or just to have a chat
                       </p>
                       <div className="dbox w-100 d-flex align-items-center">
                         <div className="icon d-flex align-items-center justify-content-center">
@@ -136,8 +142,10 @@ class ContactForm extends Component {
                         </div>
                         <div className="text pl-3">
                           <p>
-                            <span>Address:</span>{' '}
-                            <a href="tel://1234567920">Dayananda Sagar College of Enginnering</a>
+                            <span>Address:</span>{" "}
+                            <a href="tel://1234567890">
+                              Dayananda Sagar College of Engineering
+                            </a>
                           </p>
                         </div>
                       </div>
@@ -147,18 +155,18 @@ class ContactForm extends Component {
                         </div>
                         <div className="text pl-3">
                           <p>
-                            <span>Phone:</span>{' '}
-                            <a href="tel://1234567920">+91 63639 88391</a>
+                            <span>Phone:</span>{" "}
+                            <a href="tel://6363988392">+91 63639 88392</a>
                           </p>
                         </div>
                       </div>
                       <div className="dbox w-100 d-flex align-items-center">
-                      <div className="icon d-flex align-items-center justify-content-center">
+                        <div className="icon d-flex align-items-center justify-content-center">
                           <span className="fa fa-paper-plane"></span>
                         </div>
                         <div className="text pl-3">
                           <p>
-                            <span>Email:</span>{' '}
+                            <span>Email:</span>{" "}
                             <a href="mailto:support@insight-ink.org">
                               support@insight-ink.org
                             </a>
@@ -171,7 +179,8 @@ class ContactForm extends Component {
                         </div>
                         <div className="text pl-3">
                           <p>
-                            <span>Website</span> <a href="https://insight-ink.org/">insight-ink.org</a>
+                            <span>Website:</span>{" "}
+                            <a href="https://areeb.cloud/">areeb.cloud</a>
                           </p>
                         </div>
                       </div>

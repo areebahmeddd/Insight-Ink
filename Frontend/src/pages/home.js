@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
-import Axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import { useContext } from "react";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
@@ -25,6 +24,7 @@ import { MouseContext } from "../components/context/mouse-context";
 import YoutubeEmbed from "components/ytembed";
 import Alert from "react-bootstrap/Alert";
 import Loader from "components/loader/Loader";
+import Axios from "axios";
 import testData from "../test.json";
 
 const Row = tw.div`flex`;
@@ -149,41 +149,30 @@ export default ({
 
     const formattedDate = dateValue
       ? `${dateValue.getFullYear()}-${(dateValue.getMonth() + 1)
-        .toString()
-        .padStart(2, "0")}`
+          .toString()
+          .padStart(2, "0")}`
       : "";
 
     setLoading(true);
 
     try {
       if (
-        [
-          "NDTV",
-          "Dainik Jagran",
-          "Prajavani",
-          "Dinamalar",
-          "Mathrubhumi",
-          "Eenadu",
-        ].includes(dropdownValue)
-      ) {
+          ["NDTV", "Dainik Jagran", "Prajavani", "Dinamalar", "Mathrubhumi", "Eenadu"].includes(dropdownValue)
+        ) {
         const requestData = {
           news_source: dropdownValue,
-          target_date: formattedDate,
+          target_date: formattedDate
         };
 
-        const response = await Axios.post(
-          "http://127.0.0.1:5000/api",
-          requestData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
+        const response = await Axios.post("http://127.0.0.1:5000/api", requestData, {
+          headers: {
+            "Content-Type": "application/json"
           }
-        );
+        });
 
         if (response.data && !response.data.error) {
           navigate("/dashboard", {
-            state: { tableData: response.data },
+            state: { tableData: response.data }
           });
         } else {
           console.error("Error: ", response.data.error);
@@ -191,7 +180,7 @@ export default ({
       }
     } catch (error) {
       navigate("/dashboard", {
-        state: { tableData: testData },
+        state: { tableData: testData }
       });
     }
 
@@ -312,7 +301,11 @@ export default ({
                 <ImageContainer>
                   <Image
                     src="https://64.media.tumblr.com/b83bb2c0ae680d02f3e732b8a789dcbd/tumblr_nydzs5zeHS1r2geqjo1_540.gif"
-                    style={{ borderRadius: "50%",pointerEvents:"none",userSelect:"none"}}
+                    style={{
+                      borderRadius: "50%",
+                      pointerEvents: "none",
+                      userSelect: "none",
+                    }}
                   />
                 </ImageContainer>
               </ImageColumn>
@@ -328,192 +321,185 @@ export default ({
                 </SectionDescription>
               </div>
 
-              
-                <div className="form">
-                  <form onSubmit={handleSubmit}>
-                    <div style={{ ...centerFlex, margin: "0px 20px" }}>
-                      <select
-                        value={dropdownValue}
-                        onChange={(e) => setDropdownValue(e.target.value)}
-                        style={{
-                          ...buttonStyle2,
-                          lineHeight: "30px",
-                        }}
-                      >
-                        <option hidden value="">
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News
-                          Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </option>
-                        <option value="NDTV">NDTV (English)</option>
-                        <option value="Dainik Jagran">
-                          Dainik Jagran (Hindi)
-                        </option>
-                        <option value="Prajavani">Prajavani (Kannada)</option>
-                        <option value="Dinamalar">Dinamalar (Tamil)</option>
-                        <option value="Mathrubhumi">
-                          Mathrubhumi (Malayalam)
-                        </option>
-                        <option value="Eenadu">Eenadu (Telugu)</option>
-                      </select>
-                      <style jsx="true">{`
-                        select {
-                          -webkit-appearance: none;
-                          -moz-appearance: none;
-                          appearance: none;
-                          line-height: 30px;
-                          background-image: url("https://imagizer.imageshack.com/img923/5379/D5ArC0.png");
-                          background-repeat: no-repeat;
-                          background-position: calc(100% - 1rem) center !important;
-                          background-size: 1em;
-                        }
-                      `}</style>
-                      <div style={datePickerStyle}>
-                        <div style={{...centerFlex,textAlign:"center"}}>
-                          <div style={textWhite}>Select Date</div>
-                        </div>
-                        <div style={{alignItems:"center",display:"flex"}}>
+              <div className="form">
+                <form onSubmit={handleSubmit}>
+                  <div style={{ ...centerFlex, margin: "0px 20px" }}>
+                    <select
+                      value={dropdownValue}
+                      onChange={(e) => setDropdownValue(e.target.value)}
+                      style={{
+                        ...buttonStyle2,
+                        lineHeight: "30px",
+                      }}
+                    >
+                      <option hidden value="">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News
+                        Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </option>
+                      <option value="NDTV">NDTV (English)</option>
+                      <option value="Dainik Jagran">Dainik Jagran (Hindi)</option>
+                      <option value="Prajavani">Prajavani (Kannada)</option>
+                      <option value="Dinamalar">Dinamalar (Tamil)</option>
+                      <option value="Mathrubhumi">Mathrubhumi (Malayalam)</option>
+                      <option value="Eenadu">Eenadu (Telugu)</option>
+                    </select>
+                    <style jsx="true">{`
+                      select {
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        line-height: 30px;
+                        background-image: url("https://imagizer.imageshack.com/img923/5379/D5ArC0.png");
+                        background-repeat: no-repeat;
+                        background-position: calc(100% - 1rem) center !important;
+                        background-size: 1em;
+                      }
+                    `}</style>
+                    <div style={datePickerStyle}>
+                      <div style={{ ...centerFlex, textAlign: "center" }}>
+                        <div style={textWhite}>Select Date</div>
+                      </div>
+                      <div style={{ alignItems: "center", display: "flex" }}>
                         <DatePicker
                           className="datepicker"
                           selected={dateValue}
                           onChange={(date) => setDateValue(date)}
                           style={{ width: "100%" }}
                         />
-                        </div>
-                        <style jsx="true">{`
-                          .datepicker {
-                            background-color: #454444;
-                            color: white;
-                            border-radius: 8px;
-                            padding: 2px 0px 2px 8px;
-                            width: 250px;
-                            box-sizing: border-box;
-                          }
-
-                          @media (max-width: 700px) {
-                            .datepicker {
-                              width: 65vw;
-                            }
-                          }
-
-                          @media (max-width: 400px) {
-                            .datepicker {
-                              width: 100%;
-                            }
-                          }
-                        `}</style>
                       </div>
-                      <div style={centerFlex}>
-                        <button
-                          type="submit"
-                          className="button-74"
+                      <style jsx="true">{`
+                        .datepicker {
+                          background-color: #454444;
+                          color: white;
+                          border-radius: 8px;
+                          padding: 2px 0px 2px 8px;
+                          width: 250px;
+                          box-sizing: border-box;
+                        }
+
+                        @media (max-width: 700px) {
+                          .datepicker {
+                            width: 65vw;
+                          }
+                        }
+
+                        @media (max-width: 400px) {
+                          .datepicker {
+                            width: 100%;
+                          }
+                        }
+                      `}</style>
+                    </div>
+                    <div style={centerFlex}>
+                      <button
+                        type="submit"
+                        className="button-74"
+                        style={{
+                          ...buttonStyle,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <img
+                          src="https://imagizer.imageshack.com/img924/9773/V952F6.png"
+                          display="inline-block"
+                          alt=""
+                          width={25}
+                          height={25}
+                          style={{ margin: 10 }}
+                        ></img>
+                        <div
                           style={{
-                            ...buttonStyle,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
+                            fontSize: "20px",
+                            marginRight: "10px",
+                            fontWeight: "lighter",
                           }}
                         >
-                          <img
-                            src="https://imagizer.imageshack.com/img924/9773/V952F6.png"
-                            display="inline-block"
-                            alt=""
-                            width={25}
-                            height={25}
-                            style={{ margin: 10 }}
-                          ></img>
-                          <div
-                            style={{
-                              fontSize: "20px",
-                              marginRight: "10px",
-                              fontWeight: "lighter",
-                            }}
-                          >
-                            Search
-                          </div>
-                        </button>
-                      </div>
-                      <style jsx="true">{`
-                        @media (max-width: 700px) {
-                          .div {
-                            leftpadding: 100%;
-                          }
-                        }
-                      `}</style>
-                    </div>
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <Alert
-                        className="alert"
-                        variant="danger"
-                        show={showAlert}
-                        onClose={() => setShowAlert(false)}
-                        dismissible
-                      >
-                        <i className="fa fa-exclamation-circle" /> Please select
-                        a news source and a valid date
-                      </Alert>
-                      <style jsx="true">{`
-                        .alert {
-                          background-color: #f8d7da;
-                          color: #721c24;
-                          border: 1px solid #f5c6cb;
-                          border-radius: 4px;
-                          padding: 15px;
-                          margin: 5px 20px 0px 20px;
-                          font-size: 16px;
-                          font-weight: bold;
-                          max-width: 800px;
-                          position: fixed;
-                          opacity: 0;
-                          transition: opacity 0.5s ease-in-out;
-                        }
-                        .alert.show {
-                          opacity: 1;
-                        }
-
-                        @media (max-width: 700px) {
-                          .alert {
-                            position: relative;
-                          }
-                        }
-                      `}</style>
-                    </div>
-                    <SectionHeading
-                      style={{ color: "#ededed", marginTop: "4%" }}
-                    >
-                      Project Demo
-                    </SectionHeading>
-                    <div
-                  style={{
-                    ...centerFlex,
-                    textAlign: "center",
-                    margin: "0px 20px 10px 20px",
-                  }}
-                >
-                  <SectionDescription>
-                    <a href="https://github.com/areebahmeddd/Insight-Ink/blob/main/README.md">
-                      Insight Ink documentation is available here
-                    </a>
-                    <br />
-                    <a href="https://github.com/areebahmeddd/Insight-Ink/blob/main/LICENSE">
-                      Insight Ink license is available here
-                    </a>
-                  </SectionDescription>
-                </div>
-                    <div className="player">
-                      <YoutubeEmbed embedId="dQw4w9WgXcQ" />
+                          Search
+                        </div>
+                      </button>
                     </div>
                     <style jsx="true">{`
-                      .player {
-                        margin: 0% 20% 0% 20%;
-                      }
                       @media (max-width: 700px) {
-                        .player {
-                          margin: 1% 5%;
+                        .div {
+                          leftpadding: 100%;
                         }
                       }
                     `}</style>
-                  </form>
-                </div>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Alert
+                      className="alert"
+                      variant="danger"
+                      show={showAlert}
+                      onClose={() => setShowAlert(false)}
+                      dismissible
+                    >
+                      <i className="fa fa-exclamation-circle" /> Please select a
+                      news source and a valid date
+                    </Alert>
+                    <style jsx="true">{`
+                      .alert {
+                        background-color: #f8d7da;
+                        color: #721c24;
+                        border: 1px solid #f5c6cb;
+                        border-radius: 4px;
+                        padding: 15px;
+                        margin: 5px 20px 0px 20px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        max-width: 800px;
+                        position: fixed;
+                        opacity: 0;
+                        transition: opacity 0.5s ease-in-out;
+                      }
+                      .alert.show {
+                        opacity: 1;
+                      }
+
+                      @media (max-width: 700px) {
+                        .alert {
+                          position: relative;
+                        }
+                      }
+                    `}</style>
+                  </div>
+                  <SectionHeading style={{ color: "#ededed", marginTop: "4%" }}>
+                    Project Demo
+                  </SectionHeading>
+                  <div
+                    style={{
+                      ...centerFlex,
+                      textAlign: "center",
+                      margin: "0px 20px 10px 20px",
+                    }}
+                  >
+                    <SectionDescription>
+                      <a href="https://github.com/areebahmeddd/Insight-Ink/blob/main/README.md">
+                        Insight Ink documentation is available <u>here</u>
+                      </a>
+                      <br />
+                      <a href="https://github.com/areebahmeddd/Insight-Ink/blob/main/LICENSE">
+                        Insight Ink license is available <u>here</u>
+                      </a>
+                    </SectionDescription>
+                  </div>
+                  <div className="player">
+                    <YoutubeEmbed embedId="GFApJyF8yc0" />
+                  </div>
+                  <style jsx="true">{`
+                    .player {
+                      margin: 0% 20% 0% 20%;
+                    }
+                    @media (max-width: 700px) {
+                      .player {
+                        margin: 1% 5%;
+                      }
+                    }
+                  `}</style>
+                </form>
+              </div>
               <style jsx="true">{`
                 @media (max-width: 700px) {
                   .form form div {

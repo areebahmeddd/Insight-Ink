@@ -3,17 +3,19 @@ import { useLoading, BallTriangle } from "@agney/react-loading";
 function Loader() {
   const { containerProps, indicatorEl } = useLoading({
     loading: true,
-    indicator: <BallTriangle width="10%" color="black"/>,
+    indicator: <BallTriangle width="10%" color="black" />,
   });
 
   return (
-    <section {...containerProps} 
-    style={{ 
-        width: "100%", 
+    <section
+      {...containerProps}
+      style={{
+        width: "100%",
         height: "100%",
         display: "flex",
         justifyContent: "center",
-    }}>
+      }}
+    >
       {indicatorEl}
     </section>
   );

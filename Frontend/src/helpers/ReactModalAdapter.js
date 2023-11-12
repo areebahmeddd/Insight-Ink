@@ -1,5 +1,5 @@
-import React from 'react';
-import Modal from "react-modal"
+import React from "react";
+import Modal from "react-modal";
 
 /* This just wraps react-modal to allow styling the modal overlay, you shouldn't have the need to change this at all */
 export default ({ className, ...props }) => {
@@ -11,6 +11,5 @@ export default ({ className, ...props }) => {
       overlayClassName={overlayClassName}
       {...props}
     />
-  )
-}
-
+  );
+};
