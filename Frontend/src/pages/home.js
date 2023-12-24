@@ -3,7 +3,6 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
-import { useContext } from "react";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import {
   Container,
@@ -20,7 +19,6 @@ import {
 import logo from "images/logo.png";
 import "./home.css";
 import DotRing from "components/dotRing";
-import { MouseContext } from "../components/context/mouse-context";
 import YoutubeEmbed from "components/ytembed";
 import Alert from "react-bootstrap/Alert";
 import Loader from "components/loader/Loader";
@@ -189,7 +187,6 @@ export default ({
     }, 2000);
   };
 
-  const { cursorChangeHandler } = useContext(MouseContext);
 
   return isLoading ? (
     <Loader />
@@ -333,8 +330,8 @@ export default ({
                       }}
                     >
                       <option hidden value="">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News
-                        Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;News
+                        Source&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </option>
                       <option value="NDTV">NDTV (English)</option>
                       <option value="Dainik Jagran">Dainik Jagran (Hindi)</option>
