@@ -7,7 +7,6 @@ import SyncTable from "../components/table";
 import SideNav, { NavItem, NavIcon, NavText } from "@trendmicro/react-sidenav";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import { useLocation } from "react-router-dom";
-import ContactForm from "components/contact/contact";
 import Charts from "components/charts/Charts";
 import chartpic from "../sentiment_distribution.png";
 
@@ -48,8 +47,6 @@ const Dashboard = () => {
             <Charts chartspic={chartpic} />
           </div>
         );
-      case "contact":
-        return <ContactForm />;
       case "settings":
         return <div style={{ color: "#000" }}>Settings</div>;
       default:

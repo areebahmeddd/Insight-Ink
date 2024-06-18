@@ -149,19 +149,19 @@ export default ({
 
     const formattedDate = dateValue
       ? `${dateValue.getFullYear()}-${(dateValue.getMonth() + 1)
-          .toString()
-          .padStart(2, "0")}`
+        .toString()
+        .padStart(2, "0")}`
       : "";
 
     setLoading(true);
 
     try {
       if (
-          ["NDTV", "Dainik Jagran", "Prajavani", "Dinamalar", "Mathrubhumi", "Eenadu"].includes(dropdownValue)
-        ) {
+        ["NDTV", "Dainik Jagran", "Prajavani", "Dinamalar", "Mathrubhumi", "Eenadu"].includes(dropdownValue)
+      ) {
         const requestData = {
           news_source: dropdownValue,
-          target_date: formattedDate
+          selected_date: formattedDate
         };
 
         const response = await Axios.post("http://127.0.0.1:5000/api", requestData, {

@@ -7,22 +7,17 @@ from department_categorizer import categorize_department
 
 def perform_translation(news_source: str, extracted_text: tuple, json_file_path: str, language: str) -> None:
     google_translator = Translator()
-
     file_name = extracted_text[1]
     extracted_lines = extracted_text[0].split("\n")
-
     print(f'\nTranslating: {file_name}')
 
-    translated_text = " ".join(
-        [
-            google_translator.translate(str(line), src = language, dest = "en").text
-            for line in extracted_lines
-            if line is not None and line.strip() != ""
-        ]
-    )
+    translated_text = " ".join([
+        google_translator.translate(str(line), src = language, dest = "en").text
+        for line in extracted_lines
+        if line is not None and line.strip() != ""
+    ])
 
     print("Done ...")
-
     print(f'\nSaving data to file: {json_file_path}')
 
     article_data = {

@@ -26,19 +26,17 @@ media_outlets = {
 @app.route("/api", methods = ["POST"])
 def process_data() -> str:
     news_source = request.json.get("news_source")
-    target_date = request.json.get("target_date")
+    selected_date = request.json.get("selected_date")
 
     if news_source == "NDTV":
-        source_url = f'https://archives.ndtv.com/articles/{target_date}.html'
+        source_url = f'https://archives.ndtv.com/articles/{selected_date}.html'
         max_articles_to_scrape = 500
 
-        asyncio.run(scrape_ndtv_archive(news_source, target_date, source_url, max_articles_to_scrape))
-
+        asyncio.run(scrape_ndtv_archive(news_source, selected_date, source_url, max_articles_to_scrape))
         with open(r'Frontend\src\english.json', "r", encoding = "utf-8") as json_file:
             scraped_data = json.load(json_file)
 
         plot_sentiment_graph(scraped_data)
-
         return jsonify(scraped_data)
 
     elif news_source in media_outlets:

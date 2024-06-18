@@ -111,4 +111,4 @@ This project is licensed under the [Apache License 2.0](https://github.com/areeb
 
 ## Authors
 
-[Areeb Ahmed](https://github.com/areebahmeddd), [Shivansh Karan](https://github.com/SpaceTesla), [Nandini Sharma](https://github.com/NandiniSharma116), [Ravikant Saraf](https://github.com/Ravikant2003), [Mohit Nagaraj](https://github.com/mohit-nagaraj), [Anish Varma](https://github.com/Av7danger)
+[Areeb Ahmed](https://github.com/areebahmeddd), [Shivansh Karan](https://github.com/SpaceTesla), [Nandini Sharma](https://github.com/NandiniSharma116), [Ravikant Saraf](https://github.com/Ravikant2003), [Mohit Nagaraj](https://github.com/mohit-nagaraj)

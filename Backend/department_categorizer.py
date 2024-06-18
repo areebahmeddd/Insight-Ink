@@ -25,21 +25,17 @@ def categorize_department(text: str) -> str:
 
 
 def preprocess_text(raw_text: str) -> str:
-    raw_text = "".join(
-        [
-            character.lower()
-            for character in raw_text
-            if character not in string.punctuation
-        ]
-    )
+    raw_text = "".join([
+        character.lower()
+        for character in raw_text
+        if character not in string.punctuation
+    ])
 
-    tokenized_text = " ".join(
-        [
-            lemmatizer.lemmatize(word)
-            for word in re.split(r'\W+', raw_text)
-            if word not in common_words
-        ]
-    )
+    tokenized_text = " ".join([
+        lemmatizer.lemmatize(word)
+        for word in re.split(r'\W+', raw_text)
+        if word not in common_words
+    ])
 
     return tokenized_text
 
